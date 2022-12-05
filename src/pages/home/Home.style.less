@@ -1,3 +1,163 @@
 .home {
- 
+  &-title {
+    margin-bottom: 10px;
+    span:first-child {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    span:last-child {
+      font-size: 12px;
+      color: var(--color-grey);
+      margin-left: 10px;
+    }
+  }
+  &-banner {
+    height: 135px;
+    .van-swipe {
+      height: 100%;
+      .van-image {
+        height: 100%;
+      }
+    }
+  }
+
+  &-nav {
+    height: 70px;
+    &-item {
+      flex-direction: column;
+      img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 8px;
+      }
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &-new {
+    padding: 0 0 0 10px;
+    margin: 10px 0;
+    &-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &-notice {
+      width: 80%;
+      .notice-swipe {
+        height: 40px;
+        line-height: 40px;
+      }
+      .van-notice-bar {
+        background-color: #fff;
+        padding: 0 10px;
+      }
+      .van-swipe-item {
+        color: var(--color-grey);
+        font-size: 12px;
+      }
+    }
+  }
+
+  &-popularity {
+    padding: 10px;
+    &-swiper {
+      .swiper-wrapper {
+        height: 115px;
+      }
+    }
+
+    &-item {
+      padding: 0 10px 10px 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px #dddddd;
+      margin: 10px;
+      &-header {
+        .notice-swipe {
+          height: 40px;
+          line-height: 40px;
+        }
+        .van-notice-bar {
+          background-color: #fff;
+          padding: 0 10px;
+        }
+        .van-swipe-item {
+          color: var(--color-grey);
+          font-size: 12px;
+        }
+      }
+
+      &-content {
+        padding: 0 10px;
+      }
+
+      &-left {
+        flex: 30%;
+      }
+
+      &-right {
+        flex: 70%;
+        flex-direction: column;
+        font-size: 12px;
+      }
+
+      .value {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--color-red);
+        margin-bottom: 10px;
+      }
+
+      .text {
+        color: var(--color-grey);
+        font-size: 12px;
+      }
+
+      .title {
+        margin-bottom: 7px;
+        border: 1px solid var(--color-grey);
+        border-radius: 5px;
+        padding: 2px;
+        color: var(--color-grey);
+        text-align: center;
+      }
+
+      .tag {
+        color: var(--color-main-sub);
+        background-color: #fef1f7;
+        padding: 5px;
+        text-align: center;
+      }
+    }
+  }
+
+  &-financial {
+    padding: 0 10px;
+
+    &-item {
+      box-shadow: 0 0 5px var(--color-grey);
+      text-align: center;
+      padding: 10px 0;
+      background: url("../../assets/image/syc.png") no-repeat;
+      background-size: 100% 100%;
+      background-position: center center;
+      margin: 10px;
+      h2 {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+      p {
+        font-size: 12px;
+        color: var(--color-grey);
+        margin-bottom: 10px;
+      }
+      .van-button {
+        width: 80%;
+        height: 27px;
+        padding: 0;
+      }
+    }
+  }
 }

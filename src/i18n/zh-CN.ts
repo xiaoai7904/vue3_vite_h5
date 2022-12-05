@@ -33,5 +33,11 @@ export const zhCn = {
     protocol: "我同意以上协议",
     privacyPolicy: "《华夏财富用户隐私政策》",
     join: "进入"
+  },
+  home: {
+    regularFinancialManagement: "定期理财",
+    rechargeOnline: "在线充值",
+    quickWithdrawal: "快速提现",
+    inviteFriends: "邀请好友"
   }
 };

@@ -4,7 +4,7 @@ import { RouterNameEnum } from "@/common";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: RouterNameEnum.HOME,
     component: () => import("@/pages/home"),
     meta: {
       title: "首页",

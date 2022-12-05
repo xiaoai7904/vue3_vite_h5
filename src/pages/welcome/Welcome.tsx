@@ -1,11 +1,14 @@
 import { defineComponent } from "vue";
+import {useRouter} from "vue-router"
 import { ActionBar, ActionBarButton, Checkbox } from "vant";
 import { useI18n } from "vue-i18n";
+import {RouterNameEnum} from "@/common"
 import "./Welcome.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
+    const router = useRouter();
     return () => (
       <div class="welcome">
         <h1>{t("welcome.title" /**感谢您使用华夏财富APP */)}</h1>
@@ -27,7 +30,7 @@ export default defineComponent({
           <ActionBarButton>
             <Checkbox>{t("welcome.protocol" /**我同意以上协议 */)}</Checkbox>
           </ActionBarButton>
-          <ActionBarButton type="danger">
+          <ActionBarButton type="danger" onClick={() => router.push({name: RouterNameEnum.HOME})}>
             {t("welcome.join" /**进入 */)}
           </ActionBarButton>
         </ActionBar>

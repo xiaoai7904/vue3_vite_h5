@@ -1,4 +1,6 @@
 export enum RouterNameEnum {
+  // 首页
+  HOME="home",
   // 登录
   LOGIN = "login",
   // 注册
