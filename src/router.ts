@@ -34,6 +34,14 @@ const routes: Array<RouteRecordRaw> = [
       title: "找回密码",
     },
   },
+  {
+    path: "/welcome",
+    name: RouterNameEnum.WELCOME,
+    component: () => import("@/pages/welcome"),
+    meta: {
+      title: "欢迎页",
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),

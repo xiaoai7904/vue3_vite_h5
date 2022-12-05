@@ -11,9 +11,11 @@
   "dependencies": {
     "vant": "^4.0.0",
     "vue": "^3.2.41",
+    "vue-i18n": "9",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^6.0.3",
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",

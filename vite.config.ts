@@ -6,12 +6,14 @@ import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
 import autoprefixer from "autoprefixer";
 import postcssPxtorem from "postcss-pxtorem";
+import vueI18n from "@intlify/vite-plugin-vue-i18n";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
-      "@com": resolve(__dirname, "./src/components"),
+      // "vue-i18n": "vue-i18n/dist/vue-i18n.runtime.esm-bundler.js",
     },
   },
   css: {
@@ -25,7 +27,7 @@ export default defineConfig({
         autoprefixer,
         postcssPxtorem({
           rootValue({ file }) {
-            return 37.5
+            return 37.5;
             // return file.indexOf("vant/lib") !== -1 ? 37.5 : 75;
           },
           propList: ["*"],
@@ -36,6 +38,9 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    vueI18n({
+      runtimeOnly: false,
+    }),
     // Components({
     //   resolvers: [VantResolver()],
     // }),
