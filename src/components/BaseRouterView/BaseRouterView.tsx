@@ -1,11 +1,13 @@
 import { createVNode, defineComponent, Transition, VNode } from "vue";
 import { RouterView, RouteLocationNormalizedLoaded } from "vue-router";
+import "./BaseRouterView.style.less";
 
 export default defineComponent({
   name: "RootRouterView",
   setup(_props, { slots }) {
     return () => (
-      <RouterView
+      <div class="app-router">
+        <RouterView
         v-slots={{
           default: ({
             Component,
@@ -19,6 +21,8 @@ export default defineComponent({
           ),
         }}
       />
+      </div>
+      
     );
   },
 });

@@ -11,6 +11,7 @@ export default defineComponent({
       <div class="forget">
         <NavBar
           title="找回密码"
+          fixed
           safe-area-inset-top
           v-slots={{
             left: () => (

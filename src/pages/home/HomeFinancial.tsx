@@ -1,6 +1,6 @@
 import { defineComponent } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay } from "swiper";
+// import { Autoplay } from "swiper";
 import { Button } from "vant";
 export default defineComponent({
   setup() {
@@ -17,8 +17,8 @@ export default defineComponent({
          threshold={1}
          watchOverflow={true}
          initialSlide={0}
-         modules={[Autoplay]}
-         autoplay={{ delay: 4000, disableOnInteraction: false }}
+        //  modules={[Autoplay]}
+        //  autoplay={{ delay: 4000, disableOnInteraction: false }}
         >
           <SwiperSlide>
             <div class="home-financial-item">

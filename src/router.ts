@@ -5,9 +5,41 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: RouterNameEnum.HOME,
-    component: () => import("@/pages/home"),
+    component: () => import("@/components/LayoutView"),
+    children: [
+      {
+        path: "",
+        name: RouterNameEnum.HOME,
+        component: () => import("@/pages/home"),
+        meta: {
+          title: "首页",
+        },
+      },
+      {
+        path: "/positionRecord",
+        name: RouterNameEnum.POSITIONRECORD,
+        component: () => import("@/pages/positionRecord"),
+        meta: {
+          title: "持仓记录",
+        },
+      },
+      {
+        path: "/purchase",
+        name: RouterNameEnum.PURCHASE,
+        component: () => import("@/pages/purchase"),
+        meta: {
+          title: "申购列表",
+        },
+      },
+      
+    ],
+  },
+  {
+    path: "/purchaseDetails",
+    name: RouterNameEnum.PURCHASEDETAILS,
+    component: () => import("@/pages/purchase/PurchaseDetails"),
     meta: {
-      title: "首页",
+      title: "申购详情",
     },
   },
   {

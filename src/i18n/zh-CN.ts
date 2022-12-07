@@ -1,4 +1,11 @@
 export const zhCn = {
+  common: {
+    loosingRefresh: "释放即可刷新",
+    pullRefresh: "松开刷新...",
+    loading: "加载中",
+    pageListEnd: "已加载全部内容",
+    loadingText: "正在加载中...",
+  },
   login: {
     title: "华夏基金",
     userNameTips: "请输入用户名",
@@ -23,21 +30,30 @@ export const zhCn = {
     referralCodeTips: "请输入推荐码",
     tips1: "我已知晓并同意{open}各项条约",
     tips2: "“开户协议”",
-    gotoLogin: "已有账号, 马上登录"
+    gotoLogin: "已有账号, 马上登录",
   },
   welcome: {
     title: "感谢您使用华夏财富APP!",
     content1: "我们非常重视您的个人信息和隐私保护。",
-    content2: "为了更好地保障您的个人权益，在使用我们的产品前，请您务必审慎阅读、充分理解{privacyPolicy}各条款，我们会按照上述政策收集、使用和共享您的个人信息，如您同意",
+    content2:
+      "为了更好地保障您的个人权益，在使用我们的产品前，请您务必审慎阅读、充分理解{privacyPolicy}各条款，我们会按照上述政策收集、使用和共享您的个人信息，如您同意",
     content3: "请点击“同意”开始接受我们的服务。",
     protocol: "我同意以上协议",
     privacyPolicy: "《华夏财富用户隐私政策》",
-    join: "进入"
+    join: "进入",
   },
   home: {
     regularFinancialManagement: "定期理财",
     rechargeOnline: "在线充值",
     quickWithdrawal: "快速提现",
-    inviteFriends: "邀请好友"
+    inviteFriends: "邀请好友",
+  },
+  positionRecord: {
+    title: "持仓记录",
+    my: "我的持仓",
+    history: "历史记录",
+  },
+  purchase: {
+    title: "申购列表"
   }
 };

@@ -13,6 +13,7 @@ export default defineComponent({
       <div class="register">
         <NavBar
           title={t("register.title" /**注册 */)}
+          fixed
           safe-area-inset-top
           v-slots={{
             left: () => (
