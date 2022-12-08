@@ -14,7 +14,9 @@ export enum RouterNameEnum {
   // 申购列表
   PURCHASE = "purchase",
   // 申购详情
-  PURCHASEDETAILS = "purchaseDetails"
+  PURCHASEDETAILS = "purchaseDetails",
+  // 我的
+  MY = "my",
 }
 
 // 语言标识

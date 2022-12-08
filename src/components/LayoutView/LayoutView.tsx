@@ -13,7 +13,7 @@ export default defineComponent({
   setup() {
     const { name } = useRoute();
     const activeIndex = [RouterNameEnum.HOME, RouterNameEnum.POSITIONRECORD];
-    const activeTab = ref(activeIndex.indexOf(name as RouterNameEnum))
+    const activeTab = ref(activeIndex.indexOf(name as RouterNameEnum));
     return () => (
       <div>
         <BaseRouterView />
@@ -50,6 +50,7 @@ export default defineComponent({
             <span>客服</span>
           </TabbarItem>
           <TabbarItem
+            to="/my"
             v-slots={{
               icon: (props: any) => <Image src={myIcon} />,
             }}

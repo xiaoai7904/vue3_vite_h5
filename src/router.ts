@@ -31,7 +31,14 @@ const routes: Array<RouteRecordRaw> = [
           title: "申购列表",
         },
       },
-      
+      {
+        path: "/my",
+        name: RouterNameEnum.MY,
+        component: () => import("@/pages/my"),
+        meta: {
+          title: "我的",
+        },
+      },
     ],
   },
   {

@@ -1,12 +1,8 @@
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import {
-  NavBar,
-  ActionBar,
-  ActionBarButton,
-  ActionBarIcon,
-} from "vant";
+import { NavBar, ActionBar, ActionBarButton, ActionBarIcon } from "vant";
 import { useI18n } from "vue-i18n";
+import { RouterNameEnum } from "@/common";
 import TestIcon from "@/assets/image/user_bg.png";
 export default defineComponent({
   setup() {
@@ -71,7 +67,11 @@ export default defineComponent({
         </div>
 
         <ActionBar placeholder>
-          <ActionBarIcon icon="like-o" text="申购记录" />
+          <ActionBarIcon
+            icon="like-o"
+            text="申购记录"
+            onClick={() => router.push({ name: RouterNameEnum.POSITIONRECORD })}
+          />
           <ActionBarIcon icon="chat-o" text="在线客服" />
           <ActionBarButton type="danger">一键申购</ActionBarButton>
         </ActionBar>
