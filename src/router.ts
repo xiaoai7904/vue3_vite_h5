@@ -50,6 +50,22 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/recharge",
+    name: RouterNameEnum.RECHARGE,
+    component: () => import("@/pages/recharge"),
+    meta: {
+      title: "充值",
+    },
+  },
+  {
+    path: "/rechargeDetails",
+    name: RouterNameEnum.RECHARGEDETAILS,
+    component: () => import("@/pages/recharge/RechargeDetails"),
+    meta: {
+      title: "充值详情",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),

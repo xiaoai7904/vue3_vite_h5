@@ -17,6 +17,10 @@ export enum RouterNameEnum {
   PURCHASEDETAILS = "purchaseDetails",
   // 我的
   MY = "my",
+  // 充值
+  RECHARGE = "recharge",
+  // 充值详情
+  RECHARGEDETAILS = "rechargeDetails"
 }
 
 // 语言标识

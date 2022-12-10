@@ -1,6 +1,7 @@
 export const zhCn = {
   common: {
-    loosingRefresh: "释放即可刷新",
+    loosingRefresh
+    : "释放即可刷新",
     pullRefresh: "松开刷新...",
     loading: "加载中",
     pageListEnd: "已加载全部内容",
@@ -54,6 +55,18 @@ export const zhCn = {
     history: "历史记录",
   },
   purchase: {
-    title: "申购列表"
-  }
+    title: "申购列表",
+  },
+  recharge: {
+    title: "充值",
+    rechargeAmount: "充值金额",
+    rechargeTips: "请输入充值金额",
+    rechargeIllustrate: "充值说明",
+    unit: "元",
+    selectRechargeType: "请选择支付通道",
+    bankCardTransfer: "银行卡转账",
+    recommend: "推荐",
+    next: "下一步",
+    details: "充值订单 待支付"
+  },
 };

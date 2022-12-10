@@ -1,5 +1,7 @@
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 import { Button } from "vant";
+import { RouterNameEnum } from "@/common";
 import defaultUserIcon from "@/assets/image/head.png";
 import useIcon from "@/assets/image/7.png";
 import positionIcon from "@/assets/image/3.png";
@@ -15,6 +17,7 @@ import "./My.style.less";
 
 export default defineComponent({
   setup() {
+    const router = useRouter();
     return () => (
       <div class="my">
         <div class="my-account">
@@ -47,7 +50,11 @@ export default defineComponent({
             </div>
           </div>
           <div class="my-account-btns">
-            <Button>在线充值</Button>
+            <Button
+              onClick={() => router.push({ name: RouterNameEnum.RECHARGE })}
+            >
+              在线充值
+            </Button>
             <Button>快速提现</Button>
           </div>
         </div>
