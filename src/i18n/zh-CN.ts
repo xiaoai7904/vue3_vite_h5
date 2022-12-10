@@ -69,4 +69,10 @@ export const zhCn = {
     next: "下一步",
     details: "充值订单 待支付"
   },
+  withdraw: {
+    title: "提现",
+    subTitle: "提现金额",
+    withdrawTips: "输入提现金额",
+    withdrawBtn: "立刻提现"
+  }
 };

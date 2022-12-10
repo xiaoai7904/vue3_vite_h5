@@ -1,16 +1,7 @@
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import {
-  Form,
-  Field,
-  Button,
-  Cell,
-  NavBar,
-  Icon,
-  Uploader,
-  type UploaderFileListItem,
-} from "vant";
+import { Button, NavBar, Uploader, type UploaderFileListItem } from "vant";
 import "./Recharge.style.less";
 
 export default defineComponent({

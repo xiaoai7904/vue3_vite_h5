@@ -55,7 +55,11 @@ export default defineComponent({
             >
               在线充值
             </Button>
-            <Button>快速提现</Button>
+            <Button
+              onClick={() => router.push({ name: RouterNameEnum.WITHDRAW })}
+            >
+              快速提现
+            </Button>
           </div>
         </div>
 

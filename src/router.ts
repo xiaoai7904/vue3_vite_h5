@@ -66,6 +66,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/withdraw",
+    name: RouterNameEnum.WITHDRAW,
+    component: () => import("@/pages/withdraw"),
+    meta: {
+      title: "提现",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),

@@ -1,7 +1,7 @@
 import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { Form, Field, Button, Cell, NavBar, Icon } from "vant";
+import { Field, Button, Cell, NavBar } from "vant";
 import { RouterNameEnum } from "@/common";
 import cardIcon from "@/assets/image/card.png";
 

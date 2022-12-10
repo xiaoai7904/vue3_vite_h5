@@ -1,0 +1,69 @@
+.withdraw {
+  font-size: 12px;
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  &-content {
+    padding: 50px 16px 16px 16px;
+
+    &-card {
+      margin: 10px 0 18px 0;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0 1.5px 5px 0;
+      background-color: #fff;
+      padding: 5px 10px 10px 10px;
+      .van-field {
+        margin-bottom: 15px;
+      }
+      .van-field__control {
+        font-size: 20px;
+      }
+      .van-field__label {
+        color: var(--color-title);
+        font-size: 18px;
+      }
+      h1 {
+        font-size: 16px;
+        padding: 10px 0;
+        > span {
+          border: 1px solid #fbbd08;
+          font-size: 12px;
+          padding: 1px 6px;
+          border-radius: 2500px;
+          color: #fbbd08;
+          margin-left: 5px;
+        }
+      }
+
+      .van-cell-group {
+        .van-field__label {
+          font-size: 14px;
+          color: #8799a3;
+        }
+        .van-field__control {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &-tips {
+      padding: 15px 10px;
+      p:first-child {
+        margin-bottom: 10px;
+      }
+    }
+
+    &-balance {
+      > p {
+        color: var(--color-grey);
+        margin-right: 20px;
+      }
+    }
+
+    &-btns {
+      margin-top: 20px;
+      .van-button {
+        height: 40px;
+      }
+    }
+  }
+}
