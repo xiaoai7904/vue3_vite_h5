@@ -1,7 +1,7 @@
 import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { Field, Button, NavBar, CellGroup, Cell } from "vant";
+import { Field, Button, NavBar, CellGroup } from "vant";
 import "./Withdraw.style.less";
 
 export default defineComponent({

@@ -23,6 +23,8 @@ export enum RouterNameEnum {
   RECHARGEDETAILS = "rechargeDetails",
   // 提现
   WITHDRAW = "withdraw",
+  // 余额宝
+  BALANCEBAO = "balanceBao",
 }
 
 // 语言标识

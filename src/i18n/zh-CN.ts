@@ -74,5 +74,8 @@ export const zhCn = {
     subTitle: "提现金额",
     withdrawTips: "输入提现金额",
     withdrawBtn: "立刻提现"
+  },
+  balanceBao: {
+    title: "余额宝"
   }
 };

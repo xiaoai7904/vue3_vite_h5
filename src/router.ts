@@ -74,6 +74,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/balanceBao",
+    name: RouterNameEnum.BALANCEBAO,
+    component: () => import("@/pages/balanceBao"),
+    meta: {
+      title: "余额宝",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),

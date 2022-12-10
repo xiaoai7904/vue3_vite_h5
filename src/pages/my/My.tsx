@@ -76,37 +76,45 @@ export default defineComponent({
             </div>
           </div>
           <div class="my-financial-btns">
-            <Button type="primary">转入</Button>
+            <Button
+              type="primary"
+              onClick={() => router.push({ name: RouterNameEnum.BALANCEBAO })}
+            >
+              转入
+            </Button>
             <Button>取现</Button>
           </div>
         </div>
 
         <div class="my-nav">
-          <div>
+          <div class="flex-center">
             <img src={useIcon} alt="" />
             <p>个人信息</p>
           </div>
-          <div>
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.POSITIONRECORD })}
+          >
             <img src={positionIcon} alt="" />
             <p>持仓记录</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={rechargeIcon} alt="" />
             <p>账户明细</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={accountIcon} alt="" />
             <p>充值记录</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={incomeIcon} alt="" />
             <p>我的佣金</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={withdrawIcon} alt="" />
             <p>提现记录</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={inviteIcon} alt="" />
             <p>邀请好友</p>
           </div>
@@ -114,7 +122,7 @@ export default defineComponent({
             <img src={infoIcon} alt="" />
             <p>信息公告</p>
           </div>
-          <div>
+          <div class="flex-center">
             <img src={teamIcon} alt="" />
             <p>团队业绩</p>
           </div>

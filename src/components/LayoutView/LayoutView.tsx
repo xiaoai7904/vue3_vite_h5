@@ -1,5 +1,5 @@
-import { defineComponent, ref } from "vue";
-import { useRoute } from "vue-router";
+import { defineComponent, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { Tabbar, TabbarItem, Image } from "vant";
 import { RouterNameEnum } from "@/common";
 import { BaseRouterView } from "../BaseRouterView";
@@ -11,9 +11,18 @@ import myIcon from "@/assets/image/wd1.png";
 
 export default defineComponent({
   setup() {
-    const { name } = useRoute();
+    const route = useRoute();
+    const router = useRouter();
     const activeIndex = [RouterNameEnum.HOME, RouterNameEnum.POSITIONRECORD];
-    const activeTab = ref(activeIndex.indexOf(name as RouterNameEnum));
+    const activeTab = ref(activeIndex.indexOf(route.name as RouterNameEnum));
+
+    watch(
+      () => route?.path,
+      (newValue) => {
+        console.log(newValue);
+        activeTab.value = activeIndex.indexOf(route.name as RouterNameEnum);
+      }
+    );
     return () => (
       <div>
         <BaseRouterView />
