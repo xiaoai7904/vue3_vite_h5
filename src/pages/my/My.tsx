@@ -104,7 +104,10 @@ export default defineComponent({
             <img src={positionIcon} alt="" />
             <p>持仓记录</p>
           </div>
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.ACCOUNTDETAILS })}
+          >
             <img src={rechargeIcon} alt="" />
             <p>账户明细</p>
           </div>

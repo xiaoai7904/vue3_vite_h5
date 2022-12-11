@@ -33,7 +33,10 @@ export enum RouterNameEnum {
   BALANCEBAORECORD = "balanceBaoRecord",
   // 我的佣金
   COMMISSION = "commission",
+  // 账户明显
+  ACCOUNTDETAILS= "accountDetails",
 }
+
 
 // 语言标识
 export const XA_LANG = `XA_LANG`;

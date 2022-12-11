@@ -1,7 +1,6 @@
 export const zhCn = {
   common: {
-    loosingRefresh
-    : "释放即可刷新",
+    loosingRefresh: "释放即可刷新",
     pullRefresh: "松开刷新...",
     loading: "加载中",
     pageListEnd: "已加载全部内容",
@@ -68,22 +67,25 @@ export const zhCn = {
     recommend: "推荐",
     next: "下一步",
     details: "充值订单 待支付",
-    recordTitle: "充值记录"
+    recordTitle: "充值记录",
   },
   withdraw: {
     title: "提现",
     subTitle: "提现金额",
     withdrawTips: "输入提现金额",
     withdrawBtn: "立刻提现",
-    recordTitle: "提现记录"
+    recordTitle: "提现记录",
   },
   balanceBao: {
     title: "余额宝",
     subTitle: "余额转入",
     inputTips: "请输入转入金额",
-    recordTitle: "余额宝存取记录"
+    recordTitle: "余额宝存取记录",
   },
   commission: {
-    title: "我的佣金"
-  }
+    title: "我的佣金",
+  },
+  accountDetails: {
+    title: "账户明细",
+  },
 };

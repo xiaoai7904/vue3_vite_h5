@@ -114,6 +114,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/accountDetails",
+    name: RouterNameEnum.ACCOUNTDETAILS,
+    component: () => import("@/pages/accountDetails"),
+    meta: {
+      title: "账户明显",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),
