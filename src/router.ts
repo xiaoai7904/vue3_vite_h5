@@ -138,6 +138,22 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/updateName",
+    name: RouterNameEnum.PERSONALINFOUPDATENAME,
+    component: () => import("@/pages/personalInformation/UpdataUserName"),
+    meta: {
+      title: "修改名称",
+    },
+  },
+  {
+    path: "/updatePassword",
+    name: RouterNameEnum.PERSONALINFOUPDATEPASSWORD,
+    component: () => import("@/pages/personalInformation/PasswordManage"),
+    meta: {
+      title: "修改密码",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),

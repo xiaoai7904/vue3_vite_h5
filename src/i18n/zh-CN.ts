@@ -92,6 +92,9 @@ export const zhCn = {
     title: "团队业绩"
   },
   personalInfo: {
-    title: "个人信息"
+    title: "个人信息",
+    updateUserNameTitle: "修改名称",
+    loginPasswordMange: "登录密码",
+    payPasswordMange: "交易密码"
   }
 };

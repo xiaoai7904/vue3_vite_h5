@@ -5,6 +5,7 @@ import { NavBar, CellGroup, Cell, Icon } from "vant";
 import { PageList, PageListRefType } from "@/components/PageList";
 import defaultUserIcon from "@/assets/image/head.png";
 import "./PersonalInformation.style.less";
+import { RouterNameEnum } from "@/common";
 
 export default defineComponent({
   setup() {
@@ -28,51 +29,67 @@ export default defineComponent({
         icon: "user-circle-o",
         label: "头像",
         right: () => <img src={defaultUserIcon} alt="" />,
+        click: () => {},
       },
       {
         icon: "manager-o",
         label: "用户名",
         right: () => "xiaoai",
+        click: () => {
+          router.push({ name: RouterNameEnum.PERSONALINFOUPDATENAME });
+        },
       },
       {
         icon: "phone-circle-o",
         label: "手机号",
         right: () => "14858484884",
+        click: () => {},
       },
       {
         icon: "comment-circle-o",
         label: "姓名",
         right: () => "",
+        click: () => {},
       },
       {
         icon: "idcard",
         label: "身份证",
         right: () => "",
+        click: () => {},
       },
       {
         icon: "balance-pay",
         label: "钱包管理",
         right: () => "",
+        click: () => {},
       },
       {
         icon: "sign",
-        label: "密码管理",
+        label: "登录密码",
         right: () => "",
+        click: () => {
+          router.push({
+            name: RouterNameEnum.PERSONALINFOUPDATEPASSWORD,
+            query: { type: "login" },
+          });
+        },
       },
       {
         icon: "ecard-pay",
-        label: "交易密码管理",
+        label: "交易密码",
         right: () => "",
-      },
-      {
-        icon: "cash-back-record",
-        label: "交易密码管理",
-        right: () => "",
+        click: () => {
+          router.push({
+            name: RouterNameEnum.PERSONALINFOUPDATEPASSWORD,
+            query: { type: "pay" },
+          });
+        },
       },
       {
         icon: "records",
         label: "实名认证",
         right: () => "",
+        click: () => {},
       },
     ];
     return () => (
@@ -100,6 +117,7 @@ export default defineComponent({
                     <div class="right-cell flex-end">{item.right()}</div>
                   ),
                 }}
+                onClick={() => item.click()}
               />
             ))}
           </CellGroup>

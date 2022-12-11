@@ -39,6 +39,10 @@ export enum RouterNameEnum {
   TEAMPERFORMANCE = "teamPerformance",
   // 个人信息
   PERSONALINFO = "personalInfor",
+  // 个人信息-修改名称
+  PERSONALINFOUPDATENAME = "personalInforUpdateName",
+  // 个人信息-修改密码
+  PERSONALINFOUPDATEPASSWORD = "personalInforUpdatePassword",
 }
 
 // 语言标识
