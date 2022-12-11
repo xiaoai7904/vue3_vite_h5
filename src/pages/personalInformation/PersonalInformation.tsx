@@ -78,7 +78,7 @@ export default defineComponent({
     return () => (
       <div class="personal-info">
         <NavBar
-          title={t("teamPerformance.title" /**团队业绩 */)}
+          title={t("personalInfo.title" /**个人信息 */)}
           fixed
           safe-area-inset-top
           left-arrow

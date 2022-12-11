@@ -27,7 +27,11 @@ export default defineComponent({
               <span>用户名:</span>
               <span>cc</span>
             </div>
-            <span>设置</span>
+            <span
+              onClick={() => router.push({ name: RouterNameEnum.PERSONALINFO })}
+            >
+              设置
+            </span>
           </header>
           <div class="my-account-income">
             <div class="my-account-income-money flex-between">

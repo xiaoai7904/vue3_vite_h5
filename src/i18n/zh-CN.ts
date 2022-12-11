@@ -90,5 +90,8 @@ export const zhCn = {
   },
   teamPerformance: {
     title: "团队业绩"
+  },
+  personalInfo: {
+    title: "个人信息"
   }
 };
