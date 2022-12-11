@@ -88,4 +88,7 @@ export const zhCn = {
   accountDetails: {
     title: "账户明细",
   },
+  teamPerformance: {
+    title: "团队业绩"
+  }
 };

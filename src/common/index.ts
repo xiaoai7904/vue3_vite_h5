@@ -34,9 +34,12 @@ export enum RouterNameEnum {
   // 我的佣金
   COMMISSION = "commission",
   // 账户明显
-  ACCOUNTDETAILS= "accountDetails",
+  ACCOUNTDETAILS = "accountDetails",
+  // 团队业绩
+  TEAMPERFORMANCE = "teamPerformance",
+  // 个人信息
+  PERSONALINFO = "personalInfor",
 }
-
 
 // 语言标识
 export const XA_LANG = `XA_LANG`;

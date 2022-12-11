@@ -93,7 +93,10 @@ export default defineComponent({
         </div>
 
         <div class="my-nav">
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.PERSONALINFO })}
+          >
             <img src={useIcon} alt="" />
             <p>个人信息</p>
           </div>
@@ -140,7 +143,12 @@ export default defineComponent({
             <img src={infoIcon} alt="" />
             <p>信息公告</p>
           </div>
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() =>
+              router.push({ name: RouterNameEnum.TEAMPERFORMANCE })
+            }
+          >
             <img src={teamIcon} alt="" />
             <p>团队业绩</p>
           </div>

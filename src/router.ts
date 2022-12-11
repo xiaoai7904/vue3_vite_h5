@@ -122,6 +122,22 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/teamPerformance",
+    name: RouterNameEnum.TEAMPERFORMANCE,
+    component: () => import("@/pages/teamPerformance"),
+    meta: {
+      title: "团队业绩",
+    },
+  },
+  {
+    path: "/personalInfo",
+    name: RouterNameEnum.PERSONALINFO,
+    component: () => import("@/pages/personalInformation"),
+    meta: {
+      title: "个人信息",
+    },
+  },
+  {
     path: "/login",
     name: RouterNameEnum.LOGIN,
     component: () => import("@/pages/login"),

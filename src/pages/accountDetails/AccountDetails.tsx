@@ -32,21 +32,18 @@ export default defineComponent({
           onClickLeft={() => router.back()}
         />
         <div class="account-details-content">
-          <Field
-            v-model={store.time}
-            is-link
-            readonly
-            name="datePicker"
-            label="时间选择"
-            placeholder="点击选择时间"
-            onClick={() => (store.showPicker = true)}
-          />
-          <Popup v-model:show={store.showPicker} position="bottom">
-            <DatePicker
-              onConfirm={timeConfirm}
-              onCancel={() => (store.showPicker = false)}
+          <div class="flex-between search-wrap">
+            <Field
+              v-model={store.time}
+              readonly
+              name="datePicker"
+              label="时间选择"
+              placeholder="点击选择时间"
+              onClick={() => (store.showPicker = true)}
             />
-          </Popup>
+            <Button type="primary" icon="search">搜索</Button>
+          </div>
+
           <Tabs v-model:active={store.tabActive}>
             <Tab title="所有类型">
               <PageList
@@ -134,6 +131,12 @@ export default defineComponent({
             </Tab>
           </Tabs>
         </div>
+        <Popup v-model:show={store.showPicker} position="bottom">
+          <DatePicker
+            onConfirm={timeConfirm}
+            onCancel={() => (store.showPicker = false)}
+          />
+        </Popup>
       </div>
     );
   },
