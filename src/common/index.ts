@@ -21,10 +21,18 @@ export enum RouterNameEnum {
   RECHARGE = "recharge",
   // 充值详情
   RECHARGEDETAILS = "rechargeDetails",
+  // 充值记录
+  RECHARGERECORD = "rechargeRecord",
   // 提现
   WITHDRAW = "withdraw",
+  // 提现记录
+  WITHDRAWRECORD = "withdrawRecord",
   // 余额宝
   BALANCEBAO = "balanceBao",
+  // 余额宝转入转出记录
+  BALANCEBAORECORD = "balanceBaoRecord",
+  // 我的佣金
+  COMMISSION = "commission",
 }
 
 // 语言标识

@@ -67,15 +67,23 @@ export const zhCn = {
     bankCardTransfer: "银行卡转账",
     recommend: "推荐",
     next: "下一步",
-    details: "充值订单 待支付"
+    details: "充值订单 待支付",
+    recordTitle: "充值记录"
   },
   withdraw: {
     title: "提现",
     subTitle: "提现金额",
     withdrawTips: "输入提现金额",
-    withdrawBtn: "立刻提现"
+    withdrawBtn: "立刻提现",
+    recordTitle: "提现记录"
   },
   balanceBao: {
-    title: "余额宝"
+    title: "余额宝",
+    subTitle: "余额转入",
+    inputTips: "请输入转入金额",
+    recordTitle: "余额宝存取记录"
+  },
+  commission: {
+    title: "我的佣金"
   }
 };

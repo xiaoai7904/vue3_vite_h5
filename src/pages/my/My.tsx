@@ -82,7 +82,13 @@ export default defineComponent({
             >
               转入
             </Button>
-            <Button>取现</Button>
+            <Button
+              onClick={() =>
+                router.push({ name: RouterNameEnum.BALANCEBAORECORD })
+              }
+            >
+              取现
+            </Button>
           </div>
         </div>
 
@@ -102,15 +108,24 @@ export default defineComponent({
             <img src={rechargeIcon} alt="" />
             <p>账户明细</p>
           </div>
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.RECHARGERECORD })}
+          >
             <img src={accountIcon} alt="" />
             <p>充值记录</p>
           </div>
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.COMMISSION })}
+          >
             <img src={incomeIcon} alt="" />
             <p>我的佣金</p>
           </div>
-          <div class="flex-center">
+          <div
+            class="flex-center"
+            onClick={() => router.push({ name: RouterNameEnum.WITHDRAWRECORD })}
+          >
             <img src={withdrawIcon} alt="" />
             <p>提现记录</p>
           </div>

@@ -1,0 +1,22 @@
+.commission {
+  &-content {
+    padding: 50px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    > div {
+      border: 1px solid var(--color-border1);
+      padding: 10px;
+      text-align: center;
+      h2 {
+        font-size: 16px;
+        color: var(--color-title);
+      }
+      span {
+        color: var(--color-main);
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -66,6 +66,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/rechargeRecord",
+    name: RouterNameEnum.RECHARGERECORD,
+    component: () => import("@/pages/recharge/RechargeRecord"),
+    meta: {
+      title: "充值记录",
+    },
+  },
+  {
     path: "/withdraw",
     name: RouterNameEnum.WITHDRAW,
     component: () => import("@/pages/withdraw"),
@@ -74,11 +82,35 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/withdrawRecord",
+    name: RouterNameEnum.WITHDRAWRECORD,
+    component: () => import("@/pages/withdraw/WithdrawRecord"),
+    meta: {
+      title: "提现记录",
+    },
+  },
+  {
     path: "/balanceBao",
     name: RouterNameEnum.BALANCEBAO,
     component: () => import("@/pages/balanceBao"),
     meta: {
       title: "余额宝",
+    },
+  },
+  {
+    path: "/balanceBaoRecord",
+    name: RouterNameEnum.BALANCEBAORECORD,
+    component: () => import("@/pages/balanceBao/BalanceBaoRecord"),
+    meta: {
+      title: "余额宝转入转出记录",
+    },
+  },
+  {
+    path: "/commission",
+    name: RouterNameEnum.COMMISSION,
+    component: () => import("@/pages/commission"),
+    meta: {
+      title: "我的佣金",
     },
   },
   {
