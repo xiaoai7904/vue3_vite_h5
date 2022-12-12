@@ -1,7 +1,7 @@
 import Utils from "./utils/Utils";
 import Observer from "./observer/Observer";
 import Http from "./http/Http";
-
+export * from "./request";
 export { Utils, Observer, Http };
 export enum RouterNameEnum {
   // 首页

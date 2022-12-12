@@ -3,12 +3,15 @@ import { useRouter } from "vue-router";
 import { Form, Field, Button, Checkbox, NavBar, Icon } from "vant";
 import { useI18n } from "vue-i18n";
 import { RouterNameEnum } from "@/common";
+import { useRegister } from "@/hook";
 import "./Register.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const router = useRouter();
+    const { registerStore, register } = useRegister();
+
     return () => (
       <div class="register">
         <NavBar
@@ -28,9 +31,7 @@ export default defineComponent({
         <div class="register-form">
           <Form>
             <Field
-              // v-model="username"
-              // name="用户名"
-              // label="用户名"
+              v-model={registerStore.form.UserName}
               placeholder={t("register.nameTips" /**请输入真实姓名 */)}
               rules={[
                 {
@@ -40,6 +41,7 @@ export default defineComponent({
               ]}
             />
             <Field
+              v-model={registerStore.form.Mobile}
               type="tel"
               placeholder={t("forgetPassword.phoneTips" /**请输入手机号 */)}
               rules={[
@@ -57,9 +59,6 @@ export default defineComponent({
               }}
             />
             <Field
-              // v-model="username"
-              // name="用户名"
-              // label="用户名"
               type="number"
               placeholder={t(
                 "forgetPassword.verificationCodeTips" /**请输入短信验证码 */
@@ -74,9 +73,7 @@ export default defineComponent({
               ]}
             />
             <Field
-              // v-model="username"
-              // name="用户名"
-              // label="用户名"
+              v-model={registerStore.form.Password}
               type="password"
               placeholder={t("login.passwordTips" /**请输入密码 */)}
               rules={[
@@ -87,9 +84,6 @@ export default defineComponent({
               ]}
             />
             <Field
-              // v-model="username"
-              // name="用户名"
-              // label="用户名"
               type="password"
               placeholder="请确认交易密码"
               rules={[{ required: true, message: "请确认交易密码" }]}
@@ -116,7 +110,13 @@ export default defineComponent({
               />
             </Checkbox>
             <div class="register-footer">
-              <Button round block type="primary" size="small">
+              <Button
+                round
+                block
+                type="primary"
+                size="small"
+                onClick={register}
+              >
                 {t("register.title" /**注册 */)}
               </Button>
               <Button
