@@ -7,6 +7,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import App from "./App";
 import i18n from "./i18n";
+import {Observer} from '@/common'
+
+window.xaCustomEvent = new Observer();
 
 const app = createApp(App);
 app.use(router);

@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.2.1",
+    "js-md5": "^0.7.3",
     "swiper": "^8.4.5",
     "vant": "^4.0.0",
     "vue": "^3.2.41",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^6.0.3",
+    "@types/js-md5": "^0.4.3",
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",

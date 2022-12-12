@@ -1,3 +1,8 @@
+import Utils from "./utils/Utils";
+import Observer from "./observer/Observer";
+import Http from "./http/Http";
+
+export { Utils, Observer, Http };
 export enum RouterNameEnum {
   // 首页
   HOME = "home",
@@ -47,3 +52,9 @@ export enum RouterNameEnum {
 
 // 语言标识
 export const XA_LANG = `XA_LANG`;
+// 登陆状态
+export const XA_LOGIN_STATUS = "XA_LOGIN_STATUS";
+// Token
+export const XA_TOKEN = "XA_TOKEN";
+// loginExpired
+export const XA_LOGIN_EXPIRED = "XA_LOGIN_EXPIRED";
