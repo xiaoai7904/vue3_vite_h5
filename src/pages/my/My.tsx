@@ -159,7 +159,11 @@ export default defineComponent({
         </div>
 
         <div class="my-logout">
-          <Button type="primary" block>
+          <Button
+            type="primary"
+            block
+            onClick={() => router.push({ name: RouterNameEnum.LOGIN })}
+          >
             退出登录
           </Button>
         </div>

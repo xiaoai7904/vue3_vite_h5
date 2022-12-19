@@ -3,12 +3,13 @@
  */
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { showToast } from "vant";
-import { RequestResponse } from "./RequestType";
-import { XA_TOKEN, XA_LOGIN_EXPIRED, Utils } from "@/common";
-
+import { XA_TOKEN, XA_LOGIN_EXPIRED, Utils, RequestResponse } from "@/common";
+import { useLocalStorage } from "@/hook";
 // let isExpired = false;
 const singKey = "8MuEZabrACosmic829R3yNNFT";
 let httpIns: Http;
+
+const { localStore } = useLocalStorage();
 export default class Http {
   $http: AxiosInstance;
   constructor() {
@@ -29,6 +30,7 @@ export default class Http {
   _interceptRequest() {
     this.$http.interceptors.request.use(
       (config: any) => {
+        config.headers["Authorization"] = `Bearer ${localStore.get(XA_TOKEN)}`;
         return config;
       },
       (error: any) => Promise.reject(error)
@@ -50,7 +52,7 @@ export default class Http {
             response.data.code === 10003 ||
             response.data.code === 30002)
         ) {
-          localStorage.removeItem(XA_TOKEN);
+          localStore.remove(XA_TOKEN);
           window.xaCustomEvent.trigger(XA_LOGIN_EXPIRED);
           return Promise.reject(response);
         }
@@ -74,14 +76,14 @@ export default class Http {
     );
   }
   handerParams(params: any) {
-    const token = localStorage.getItem(XA_TOKEN);
+    const token = localStore.get(XA_TOKEN);
     for (let i in params) {
       typeof params[i] === "string" && (params[i] = params[i].trim());
       if (params[i] === undefined || params[i] === null) {
         delete params[i];
       }
     }
-    token && (params.token = JSON.parse(token));
+    token && (params.token = token);
     params.timestamp = Date.now() + "";
     const copyparams: Record<string, any> = Object.assign({}, params, {
       key: singKey,
@@ -97,14 +99,14 @@ export default class Http {
     return params;
   }
   get<T = any, R = any>(url: string, params: T): Promise<RequestResponse<R>> {
-    return this.$http.get(url, this.handerParams(params));
+    return this.$http.get(url, { params: this.handerParams(params) });
   }
   post<T = any, R = any>(url: string, params: T): Promise<RequestResponse<R>> {
     return this.$http.post(url, this.handerParams(params));
   }
 
   put<T = any, R = any>(url: string, params: T): Promise<RequestResponse<R>> {
-    return this.$http.put(url, this.handerParams(params))
+    return this.$http.put(url, this.handerParams(params));
   }
 
   static of() {

@@ -8,21 +8,20 @@ export default defineComponent({
     return () => (
       <div class="app-router">
         <RouterView
-        v-slots={{
-          default: ({
-            Component,
-          }: {
-            Component: VNode;
-            route: RouteLocationNormalizedLoaded;
-          }) => (
-            <Transition name="fade" appear>
-              {Component && createVNode(Component)}
-            </Transition>
-          ),
-        }}
-      />
+          v-slots={{
+            default: ({
+              Component,
+            }: {
+              Component: VNode;
+              route: RouteLocationNormalizedLoaded;
+            }) => (
+              <Transition name="fade" appear>
+                {Component && createVNode(Component)}
+              </Transition>
+            ),
+          }}
+        />
       </div>
-      
     );
   },
 });

@@ -2,6 +2,7 @@ import Utils from "./utils/Utils";
 import Observer from "./observer/Observer";
 import Http from "./http/Http";
 export * from "./request";
+export * from "./types";
 export { Utils, Observer, Http };
 export enum RouterNameEnum {
   // 首页
@@ -58,3 +59,7 @@ export const XA_LOGIN_STATUS = "XA_LOGIN_STATUS";
 export const XA_TOKEN = "XA_TOKEN";
 // loginExpired
 export const XA_LOGIN_EXPIRED = "XA_LOGIN_EXPIRED";
+// 记住密码
+export const XA_PASSWORD = "XA_PASSWORD";
+// 用户信息
+export const XA_USERINFO = "XA_USERINFO";

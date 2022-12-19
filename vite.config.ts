@@ -7,6 +7,7 @@ import { VantResolver } from "unplugin-vue-components/resolvers";
 import autoprefixer from "autoprefixer";
 import postcssPxtorem from "postcss-pxtorem";
 import vueI18n from "@intlify/vite-plugin-vue-i18n";
+import { babel } from "@rollup/plugin-babel";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -36,13 +37,32 @@ export default defineConfig({
     },
   },
   plugins: [
+    babel({
+      plugins: [
+        [
+          "@babel/plugin-transform-react-jsx",
+          {
+            runtime: "automatic",
+            importSource: "@antv/f2",
+          },
+        ],
+      ],
+    }),
+    Components({
+      resolvers: [VantResolver()],
+    }),
     vue(),
     vueJsx(),
     vueI18n({
       runtimeOnly: false,
     }),
-    // Components({
-    //   resolvers: [VantResolver()],
-    // }),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://10.8.0.2:8202/",
+        changeOrigin: true,
+      },
+    },
+  },
 });

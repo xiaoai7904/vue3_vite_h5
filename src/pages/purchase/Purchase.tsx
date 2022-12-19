@@ -2,21 +2,16 @@ import { defineComponent, ref, reactive } from "vue";
 import { NavBar } from "vant";
 import { useI18n } from "vue-i18n";
 import { PageList, PageListRefType } from "@/components/PageList";
+import { ProductItemType } from "@/common";
+import { useProduct } from "@/hook";
 import PurchaseItem from "./PurchaseItem";
 import "./Purchase.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
+    const { productStore, getProductList } = useProduct();
     const pageListRef = ref<PageListRefType | null>(null);
-
-    const store = reactive({
-      list: [1, 2, 3, 4, 56, 7, 8, 9],
-      total: 0,
-      pages: 1,
-      current: 1,
-    });
-    const getListApi = () => {};
 
     return () => (
       <div class="position-record">
@@ -29,16 +24,16 @@ export default defineComponent({
           <PageList
             ref={pageListRef}
             isInit
-            requestApi={getListApi}
-            list={store.list}
-            total={store.total}
-            pages={store.pages}
-            v-model:current={store.current}
+            requestApi={getProductList}
+            list={productStore.productList}
+            total={productStore.productTotal}
+            pages={productStore.productPages}
+            v-model:current={productStore.productPageNum}
             v-slots={{
-              default: (list: any[]) => (
+              default: (list: ProductItemType[]) => (
                 <>
-                  {list.map((item, index) => (
-                    <PurchaseItem />
+                  {list.map((item) => (
+                    <PurchaseItem key={item.id} data={item} />
                   ))}
                 </>
               ),

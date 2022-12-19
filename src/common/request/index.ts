@@ -116,3 +116,21 @@ export function SellRequest<T, R>(params = {} as T) {
 export function WithdrawRequest<T, R>(params = {} as T) {
   return Http.of().post<T, R>("/api/v1/account/withdraw", params);
 }
+
+/**
+ * 获取分类
+ * @param params {"Id":number}
+ * @returns Promise<any>
+ */
+export function CategoryByIdRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/category/get", params);
+}
+
+/**
+ * 分类列表
+ * @param params {"CategoryName":string, CategoryId: number, Min: string, DateRange: string[], PageNum: number, PageSize: number, OrderBy:string}
+ * @returns Promise<any>
+ */
+export function CategoryListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/category/list", params);
+}

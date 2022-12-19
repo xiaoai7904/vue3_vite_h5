@@ -26,11 +26,14 @@ export const zhCn = {
   },
   register: {
     title: "注册",
-    nameTips: "请输入真实姓名",
+    nameTips: "请输入账号",
+    nickTips: "请输入真实姓名",
+    emailTips: "请输入邮箱",
     referralCodeTips: "请输入推荐码",
-    tips1: "我已知晓并同意{open}各项条约",
+    tips1: "我已知晓并同意{tips2}各项条约",
     tips2: "“开户协议”",
     gotoLogin: "已有账号, 马上登录",
+    registerSuccess: "注册成功"
   },
   welcome: {
     title: "感谢您使用华夏财富APP!",

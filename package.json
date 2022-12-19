@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@antv/f2": "4.0.0",
+    "@antv/f2-vue": "4.0.0",
     "axios": "^1.2.1",
     "js-md5": "^0.7.3",
     "swiper": "^8.4.5",
@@ -18,7 +20,9 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.19.0",
     "@intlify/vite-plugin-vue-i18n": "^6.0.3",
+    "@rollup/plugin-babel": "^5.3.1",
     "@types/js-md5": "^0.4.3",
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",

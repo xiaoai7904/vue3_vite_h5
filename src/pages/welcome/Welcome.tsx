@@ -1,14 +1,13 @@
 import { defineComponent } from "vue";
-import {useRouter} from "vue-router"
 import { ActionBar, ActionBarButton, Checkbox } from "vant";
 import { useI18n } from "vue-i18n";
-import {RouterNameEnum} from "@/common"
+import { useLogin } from "@/hook";
 import "./Welcome.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
-    const router = useRouter();
+    const { loginStore, goHome } = useLogin();
     return () => (
       <div class="welcome">
         <h1>{t("welcome.title" /**感谢您使用华夏财富APP */)}</h1>
@@ -28,9 +27,13 @@ export default defineComponent({
         <p>{t("welcome.content3" /**请点击“同意”开始接受我们的服务。 */)} </p>
         <ActionBar placeholder>
           <ActionBarButton>
-            <Checkbox>{t("welcome.protocol" /**我同意以上协议 */)}</Checkbox>
+            <div class={loginStore.welcomeCheckError ? "animate__shakeX" : ""}>
+              <Checkbox v-model={loginStore.welcomeCheckBox}>
+                {t("welcome.protocol" /**我同意以上协议 */)}
+              </Checkbox>
+            </div>
           </ActionBarButton>
-          <ActionBarButton type="danger" onClick={() => router.push({name: RouterNameEnum.HOME})}>
+          <ActionBarButton type="danger" onClick={goHome}>
             {t("welcome.join" /**进入 */)}
           </ActionBarButton>
         </ActionBar>
