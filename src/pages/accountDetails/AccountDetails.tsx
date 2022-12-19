@@ -3,12 +3,14 @@ import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { NavBar, Button, Tabs, Tab, Field, DatePicker, Popup } from "vant";
 import { PageList, PageListRefType } from "@/components/PageList";
+import { useUser } from "@/hook";
 import "./AccountDetails.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const router = useRouter();
+    const { getUserInfo } = useUser();
     const pageListRef = ref<PageListRefType | null>(null);
     const store = reactive({
       tabActive: 0,

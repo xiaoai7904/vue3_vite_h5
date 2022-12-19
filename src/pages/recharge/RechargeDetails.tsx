@@ -2,12 +2,14 @@ import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { Button, NavBar, Uploader, type UploaderFileListItem } from "vant";
+import { usePay } from "@/hook";
 import "./Recharge.style.less";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const router = useRouter();
+    const { payStore, recahrge } = usePay();
     const afterRead = (
       file: UploaderFileListItem | UploaderFileListItem[]
     ) => {};
@@ -56,7 +58,12 @@ export default defineComponent({
             </div>
             <div class="recharge-details-content-bottom">
               <p>请务必转账金额保留小数点，以免影响充值时间</p>
-              <Button block type="primary">
+              <Button
+                block
+                type="primary"
+                loading={payStore.rehcargeLoading}
+                onClick={() => recahrge()}
+              >
                 我已完成支付
               </Button>
               <div class="tips">

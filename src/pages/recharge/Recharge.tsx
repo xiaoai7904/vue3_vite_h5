@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { Field, Button, Cell, NavBar } from "vant";
 import { RouterNameEnum } from "@/common";
+import { usePay } from "@/hook";
 import cardIcon from "@/assets/image/card.png";
 
 import "./recharge.style.less";
@@ -11,6 +12,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const { t } = useI18n();
+    const { payStore, createRechargeOrder } = usePay();
     const store = reactive({
       rechargeAmount: "",
       setp: 1,
@@ -39,7 +41,7 @@ export default defineComponent({
             <div class="recharge-content-card">
               <h1>{t("recharge.rechargeAmount" /**充值金额 */)}</h1>
               <Field
-                v-model={store.rechargeAmount}
+                v-model={payStore.recahrgeNumber}
                 label="¥"
                 label-width="0.37rem"
                 placeholder={t("recharge.rechargeTips" /**请输入充值金额 */)}
@@ -47,7 +49,7 @@ export default defineComponent({
               <h3>{t("recharge.rechargeIllustrate" /**充值说明 */)}</h3>
               <div class="recharge-amount-list">
                 {amountList.map((item) => (
-                  <div onClick={() => (store.rechargeAmount = item)}>
+                  <div onClick={() => (payStore.recahrgeNumber = item)}>
                     {item}
                     {t("recharge.unit")}
                   </div>
@@ -60,9 +62,10 @@ export default defineComponent({
               <h1>{t("recharge.selectRechargeType" /**请选择支付通道 */)}</h1>
               <Cell
                 is-link
-                onClick={() =>
-                  router.push({ name: RouterNameEnum.RECHARGEDETAILS })
-                }
+                onClick={async () => {
+                  await createRechargeOrder();
+                  router.push({ name: RouterNameEnum.RECHARGEDETAILS });
+                }}
                 v-slots={{
                   title: () => (
                     <div class="recharge-content-card-icon flex-start">

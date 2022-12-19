@@ -91,6 +91,15 @@ export function PositionRequest<T, R>(params = {} as T) {
 }
 
 /**
+ * 创建充值订单
+ * @param params { "type": "number", "number": "number" }
+ * @returns Promise<any>
+ */
+export function CreateRechargeOrderRequest<T, R>(params = {} as T) {
+  return Http.of().post<T, R>("/api/v1/account/recharge", params);
+}
+
+/**
  *充值
  * @param params { "OrderId": "string", "Pic": "string" }
  * @returns Promise<any>
