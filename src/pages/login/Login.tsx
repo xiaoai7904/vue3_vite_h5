@@ -45,6 +45,7 @@ export default defineComponent({
               type="primary"
               size="small"
               native-type="submit"
+              loading={loginStore.loading}
             >
               {t("login.loginBtn" /**登录 */)}
             </Button>

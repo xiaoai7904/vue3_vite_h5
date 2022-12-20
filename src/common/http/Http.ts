@@ -46,12 +46,7 @@ export default class Http {
         ) {
           return Promise.resolve(response.data);
         }
-        if (
-          response.data &&
-          (response.data.code === 20006 ||
-            response.data.code === 10003 ||
-            response.data.code === 30002)
-        ) {
+        if (response.data && response.data.code === 401) {
           localStore.remove(XA_TOKEN);
           window.xaCustomEvent.trigger(XA_LOGIN_EXPIRED);
           return Promise.reject(response);

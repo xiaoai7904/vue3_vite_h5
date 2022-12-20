@@ -2,18 +2,20 @@ import { reactive, watch } from "vue";
 import { useRouter } from "vue-router";
 import {
   LoginRequest,
+  LogoutRequest,
   RouterNameEnum,
   XA_PASSWORD,
   XA_TOKEN,
   XA_USERINFO,
   LoginStoreType,
   LoginResultType,
+  UserInfoType,
 } from "@/common";
 import { useLocalStorage } from "@/hook";
 
 export function useLogin() {
   const loginStore = reactive<LoginStoreType>({
-    loginLoading: false,
+    loading: false,
     form: {
       username: "",
       password: "",
@@ -30,14 +32,25 @@ export function useLogin() {
   };
   const login = async () => {
     try {
-      loginStore.loginLoading = true;
+      loginStore.loading = true;
       const { data } = await LoginRequest<any, LoginResultType>(
         loginStore.form
       );
       setLocalStore(data);
       router.push({ name: RouterNameEnum.WELCOME });
     } finally {
-      loginStore.loginLoading = false;
+      loginStore.loading = false;
+    }
+  };
+
+  const logout = async () => {
+    try {
+      loginStore.loading = true;
+      await LogoutRequest();
+      setLocalStore({ token: "", userInfo: {} as UserInfoType });
+      router.replace({ name: RouterNameEnum.LOGIN });
+    } finally {
+      loginStore.loading = false;
     }
   };
 
@@ -67,5 +80,5 @@ export function useLogin() {
       }
     }
   );
-  return { loginStore, login, checkField, goHome };
+  return { loginStore, login, logout, checkField, goHome };
 }

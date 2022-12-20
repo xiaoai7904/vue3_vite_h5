@@ -1,7 +1,8 @@
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { Button } from "vant";
-import { RouterNameEnum } from "@/common";
+import { RouterNameEnum, UserInfoType, XA_USERINFO } from "@/common";
+import { useLogin, useLocalStorage } from "@/hook";
 import defaultUserIcon from "@/assets/image/head.png";
 import useIcon from "@/assets/image/7.png";
 import positionIcon from "@/assets/image/3.png";
@@ -18,6 +19,11 @@ import "./My.style.less";
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const { loginStore, logout } = useLogin();
+    const { localStore } = useLocalStorage();
+
+    const userInfo = (localStore.get(XA_USERINFO) || {}) as UserInfoType;
+
     return () => (
       <div class="my">
         <div class="my-account">
@@ -25,7 +31,7 @@ export default defineComponent({
             <div class="user-info flex-start">
               <img src={defaultUserIcon} alt="User" />
               <span>用户名:</span>
-              <span>cc</span>
+              <span>{userInfo.userName}</span>
             </div>
             <span
               onClick={() => router.push({ name: RouterNameEnum.PERSONALINFO })}
@@ -159,11 +165,7 @@ export default defineComponent({
         </div>
 
         <div class="my-logout">
-          <Button
-            type="primary"
-            block
-            onClick={() => router.push({ name: RouterNameEnum.LOGIN })}
-          >
+          <Button type="primary" block loading={loginStore.loading} onClick={logout}>
             退出登录
           </Button>
         </div>

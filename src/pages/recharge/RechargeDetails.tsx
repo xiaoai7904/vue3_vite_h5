@@ -29,27 +29,27 @@ export default defineComponent({
           <div class="recharge-details-content-items">
             <div class="recharge-details-content-item flex-start">
               <span>所属银行</span>
-              <span>浦发银行</span>
+              <span>{payStore.rechargeInfo.bankName}</span>
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item flex-start">
               <span>银行卡号</span>
-              <span>6217920302466623</span>
+              <span>{payStore.rechargeInfo.cardNo}</span>
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item flex-start">
               <span>姓名</span>
-              <span>xxxx</span>
+              <span>{payStore.rechargeInfo.holder}</span>
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item flex-start">
               <span>开户行</span>
-              <span>浦发银行</span>
+              <span>{payStore.rechargeInfo.branch}</span>
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item flex-start">
               <span>充值金额</span>
-              <span>500.66</span>
+              <span>{payStore.rechargeInfo.amount}</span>
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item upload-wrap">

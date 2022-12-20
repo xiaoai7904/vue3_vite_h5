@@ -19,7 +19,6 @@ export default defineComponent({
     watch(
       () => route?.path,
       (newValue) => {
-        console.log(newValue);
         activeTab.value = activeIndex.indexOf(route.name as RouterNameEnum);
       }
     );

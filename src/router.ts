@@ -4,7 +4,6 @@ import { RouterNameEnum } from "@/common";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: RouterNameEnum.HOME,
     component: () => import("@/components/LayoutView"),
     children: [
       {

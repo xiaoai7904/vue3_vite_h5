@@ -1,7 +1,7 @@
 import { defineComponent, reactive, computed, PropType } from "vue";
 import { List, PullRefresh, Loading } from "vant";
 import { useI18n } from "vue-i18n";
-import pageListStyle from "./pageList.module.less";
+import "./PageList.style.less";
 
 type RequestParamsType = {
   current: number;
@@ -102,7 +102,7 @@ export default defineComponent({
           )}
           {/* {isEmpty.value && !state.httpLoading && <Empty type={props.empty} top={100} />} */}
           {isEmpty.value && state.httpLoading && (
-            <div class={pageListStyle.pageListLoading}>
+            <div class="page-list-loading">
               <Loading />
             </div>
           )}

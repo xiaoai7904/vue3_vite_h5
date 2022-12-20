@@ -96,7 +96,7 @@ export function PositionRequest<T, R>(params = {} as T) {
  * @returns Promise<any>
  */
 export function CreateRechargeOrderRequest<T, R>(params = {} as T) {
-  return Http.of().post<T, R>("/api/v1/account/recharge", params);
+  return Http.of().post<T, R>("/api/v1/account/rechargeOrder", params);
 }
 
 /**

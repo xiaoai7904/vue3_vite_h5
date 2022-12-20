@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import { showToast } from "vant";
 import {
   BuyRequest,
   RechargeRequest,
@@ -6,21 +7,31 @@ import {
   WithdrawRequest,
   PositionRequest,
   CreateRechargeOrderRequest,
+  PayStoreType,
+  RechargeCreateResType,
 } from "@/common";
 
-const payStore = reactive({
+const payStore = reactive<PayStoreType>({
   recahrgeType: 1,
   recahrgeNumber: "200",
   recahrgeOrderId: "",
   recahrgePic: "",
   rehcargeLoading: false,
 
+  rechargeInfo: {
+    amount: 0,
+    bankName: "",
+    branch: "",
+    cardNo: "",
+    holder: "",
+  },
+
   whithdrawAmount: 0,
   whithdrawPhone: "",
   whithdrawCardNo: "",
   whithdrawBank: "",
   withdrawPwd: "",
-  withdrawLoading: false
+  withdrawLoading: false,
 });
 
 /**
@@ -31,11 +42,18 @@ export function usePay() {
   const createRechargeOrder = async () => {
     try {
       payStore.rehcargeLoading = true;
-      const { data } = await CreateRechargeOrderRequest({
+      const { data } = await CreateRechargeOrderRequest<
+        any,
+        RechargeCreateResType
+      >({
         number: payStore.recahrgeNumber,
         type: payStore.recahrgeType,
       });
+      payStore.recahrgeOrderId = data.orderId;
+      payStore.rechargeInfo = data.payment;
+      return Promise.resolve(data);
     } catch (error) {
+      return Promise.reject();
     } finally {
       payStore.rehcargeLoading = false;
     }
@@ -44,6 +62,10 @@ export function usePay() {
   // 充值
   const recahrge = async () => {
     try {
+      if (!payStore.recahrgePic) {
+        showToast("请上传支付凭证图片");
+        return;
+      }
       await RechargeRequest({
         orderId: payStore.recahrgeOrderId,
         pic: payStore.recahrgePic,
@@ -79,5 +101,14 @@ export function usePay() {
     } catch (error) {}
   };
 
-  return { payStore, createRechargeOrder, recahrge, withdraw, sell, postion };
+  const checkField = () => {};
+  return {
+    payStore,
+    createRechargeOrder,
+    recahrge,
+    withdraw,
+    sell,
+    postion,
+    checkField,
+  };
 }
