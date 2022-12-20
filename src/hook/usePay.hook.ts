@@ -1,5 +1,6 @@
 import { reactive } from "vue";
-import { showToast } from "vant";
+import { showToast, showSuccessToast } from "vant";
+import { useRouter } from "vue-router";
 import {
   BuyRequest,
   RechargeRequest,
@@ -9,6 +10,7 @@ import {
   CreateRechargeOrderRequest,
   PayStoreType,
   RechargeCreateResType,
+  RouterNameEnum,
 } from "@/common";
 
 const payStore = reactive<PayStoreType>({
@@ -38,6 +40,7 @@ const payStore = reactive<PayStoreType>({
  * 充值提现持仓购买相关
  */
 export function usePay() {
+  const router = useRouter();
   // 创建充值订单
   const createRechargeOrder = async () => {
     try {
@@ -70,6 +73,8 @@ export function usePay() {
         orderId: payStore.recahrgeOrderId,
         pic: payStore.recahrgePic,
       });
+      showSuccessToast("充值成功")
+      router.replace({ name: RouterNameEnum.MY });
     } catch (error) {}
   };
 

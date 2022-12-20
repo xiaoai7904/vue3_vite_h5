@@ -1,4 +1,4 @@
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { Button, NavBar, Uploader, type UploaderFileListItem } from "vant";
@@ -10,9 +10,15 @@ export default defineComponent({
     const { t } = useI18n();
     const router = useRouter();
     const { payStore, recahrge } = usePay();
-    const afterRead = (
-      file: UploaderFileListItem | UploaderFileListItem[]
-    ) => {};
+    const uploadImg = ref("");
+    const afterRead = (file: UploaderFileListItem | UploaderFileListItem[]) => {
+      console.log(file);
+      if (!Array.isArray(file)) {
+        uploadImg.value = file.content as string;
+      }
+
+      payStore.recahrgePic = "https://xxx.com";
+    };
 
     return () => (
       <div class="recharge-details">
@@ -53,7 +59,8 @@ export default defineComponent({
               <span>复制</span>
             </div>
             <div class="recharge-details-content-item upload-wrap">
-              <Uploader afterRead={afterRead} />
+              {!uploadImg.value && <Uploader afterRead={afterRead} />}
+              {uploadImg.value && <img src={uploadImg.value} alt="" />}
               <p>上传付款截图</p>
             </div>
             <div class="recharge-details-content-bottom">
