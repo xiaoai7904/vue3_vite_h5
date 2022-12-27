@@ -4,7 +4,7 @@ import { NavBar, ActionBar, ActionBarButton, ActionBarIcon } from "vant";
 import { useI18n } from "vue-i18n";
 import { RouterNameEnum } from "@/common";
 import { useProduct } from "@/hook";
-import Chart from "@/components/Chart/Chart.vue";
+import Chart from "@/components/Chart";
 // import TestIcon from "@/assets/image/user_bg.png";
 // import Canvas from "@antv/f2-vue";
 // import { Chart, Axis, Line } from "@antv/f2";

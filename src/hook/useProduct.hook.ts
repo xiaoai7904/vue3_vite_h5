@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import {
   GoodsListRequest,
   GoodsDetailsRequest,
@@ -7,7 +7,6 @@ import {
   ProductItemType,
   ProductStoreType,
 } from "@/common";
-import { computed } from "@vue/reactivity";
 
 const productStore = reactive<ProductStoreType>({
   productList: [],
@@ -63,5 +62,11 @@ export function useProduct() {
     } catch (error) {}
   };
 
-  return { productStore, productDetails, getProductList, getProductDetails, getPositionList };
+  return {
+    productStore,
+    productDetails,
+    getProductList,
+    getProductDetails,
+    getPositionList,
+  };
 }
