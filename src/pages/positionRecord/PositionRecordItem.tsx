@@ -1,7 +1,14 @@
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import { Image, Button } from "vant";
+import { PositionItemType } from "@/common";
 import TestIcon from "@/assets/image/user_bg.png";
 export default defineComponent({
+  props: {
+    data: {
+      type: Object as PropType<PositionItemType>,
+      default: () => ({} as PositionItemType),
+    },
+  },
   setup() {
     return () => (
       <div class="position-record-item ">

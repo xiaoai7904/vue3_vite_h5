@@ -1,6 +1,8 @@
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref } from "vue";
 import { NavBar, Tab, Tabs, Image } from "vant";
 import { useI18n } from "vue-i18n";
+import { usePosition } from "@/hook";
+import { PositionItemType } from "@/common";
 import { PageList, PageListRefType } from "@/components/PageList";
 import PositionRecordItem from "./PositionRecordItem";
 import BannerIcon from "@/assets/image/banner4.png";
@@ -10,15 +12,9 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     const tabActive = ref(0);
-    const pageListRef = ref<PageListRefType | null>(null);
-
-    const store = reactive({
-      list: [1, 2, 3, 4, 56, 7, 8, 9],
-      total: 0,
-      pages: 1,
-      current: 1,
-    });
-    const getListApi = () => {};
+    const pageList1Ref = ref<PageListRefType | null>(null);
+    const pageList2Ref = ref<PageListRefType | null>(null);
+    const { positionStroe, getPosition, getPositionHis } = usePosition();
 
     return () => (
       <div class="position-record">
@@ -31,19 +27,19 @@ export default defineComponent({
           <Tabs v-model:active={tabActive.value}>
             <Tab title={t("positionRecord.my" /**我的持仓 */)}>
               <PageList
-                ref={pageListRef}
+                ref={pageList1Ref}
                 isInit
-                requestApi={getListApi}
-                list={store.list}
-                total={store.total}
-                pages={store.pages}
-                v-model:current={store.current}
+                requestApi={getPosition}
+                list={positionStroe.positionList}
+                total={positionStroe.positionTotal}
+                pages={positionStroe.positionPages}
+                v-model:current={positionStroe.positionPageNum}
                 v-slots={{
-                  default: (list: any[]) => (
+                  default: (list: PositionItemType[]) => (
                     <>
                       <Image class="position-record-banner" src={BannerIcon} />
                       {list.map((item, index) => (
-                        <PositionRecordItem />
+                        <PositionRecordItem key={index} data={item} />
                       ))}
                     </>
                   ),
@@ -52,6 +48,25 @@ export default defineComponent({
             </Tab>
             <Tab title={t("positionRecord.history" /**历史记录 */)}>
               <Image src={BannerIcon} />
+              <PageList
+                ref={pageList2Ref}
+                isInit
+                requestApi={getPositionHis}
+                list={positionStroe.positionHisList}
+                total={positionStroe.positionHisTotal}
+                pages={positionStroe.positionHisPages}
+                v-model:current={positionStroe.positionHisPageNum}
+                v-slots={{
+                  default: (list: PositionItemType[]) => (
+                    <>
+                      <Image class="position-record-banner" src={BannerIcon} />
+                      {list.map((item, index) => (
+                        <PositionRecordItem key={index} data={item} />
+                      ))}
+                    </>
+                  ),
+                }}
+              />
             </Tab>
           </Tabs>
         </div>

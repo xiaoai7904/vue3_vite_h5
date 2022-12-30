@@ -28,6 +28,15 @@ export function RegisterRequest<T, R>(params = {} as T) {
 }
 
 /**
+ * 上传图片
+ * @param params {}
+ * @returns Promise<any>
+ */
+export function UploadRequest<T, R>(params = {} as T) {
+  return Http.of().post<T, R>("/api/v1/singleImg", params);
+}
+
+/**
  * 重置用户密码
  * @param params {"Id": number, "Password": "string"}
  * @returns Promise<any>
@@ -65,11 +74,20 @@ export function GoodsDetailsRequest<T, R>(params = {} as T) {
 
 /**
  * 购买
- * @param params { }
+ * @param params { Number, FundId }
  * @returns Promise<any>
  */
 export function BuyRequest<T, R>(params = {} as T) {
   return Http.of().post<T, R>("/api/v1/account/buy", params);
+}
+
+/**
+ * 购买货币基金
+ * @param params { Number, FundId }
+ * @returns Promise<any>
+ */
+export function BuyMRequest<T, R>(params = {} as T) {
+  return Http.of().post<T, R>("/api/v1/account/mbuy", params);
 }
 
 /**
@@ -88,6 +106,15 @@ export function AccountDetailRequest<T, R>(params = {} as T) {
  */
 export function PositionRequest<T, R>(params = {} as T) {
   return Http.of().post<T, R>("/api/v1/account/position", params);
+}
+
+/**
+ * 历史持仓
+ * @param params { DateRange, PageNum, PageSize, OrderBy }
+ * @returns Promise<any>
+ */
+export function PositionHisRequest<T, R>(params = {} as T) {
+  return Http.of().post<T, R>("/api/v1/account/positionHis", params);
 }
 
 /**
@@ -110,11 +137,20 @@ export function RechargeRequest<T, R>(params = {} as T) {
 
 /**
  *售出
- * @param params { }
+ * @param params { Number, FundId }
  * @returns Promise<any>
  */
 export function SellRequest<T, R>(params = {} as T) {
   return Http.of().post<T, R>("/api/v1/account/sell", params);
+}
+
+/**
+ * 赎回货币基金
+ * @param params { OrderId, Number, Force }
+ * @returns Promise<any>
+ */
+export function SellMRequest<T, R>(params = {} as T) {
+  return Http.of().post<T, R>("/api/v1/account/msell", params);
 }
 
 /**
@@ -142,4 +178,67 @@ export function CategoryByIdRequest<T, R>(params = {} as T) {
  */
 export function CategoryListRequest<T, R>(params = {} as T) {
   return Http.of().get<T, R>("/api/v1/category/list", params);
+}
+
+/**
+ * 获取货币基金
+ * @param params {"Id":number }
+ * @returns Promise<any>
+ */
+export function MfundByIdRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/mfund/get", params);
+}
+
+/**
+ * 获取货币基金列表
+ * @param params {"Name":number, Day: 产品周期, Ratio:收益率, MinNum: 最小购买金额, MaxNum: 最大购买金额, Status, Fee: 购买费率, DateRange: string[], PageNum, PageSize, OrderBy }
+ * @returns Promise<any>
+ */
+export function MfundListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/mfund/list", params);
+}
+
+/**
+ * 获取基金
+ * @param params {"Id":number }
+ * @returns Promise<any>
+ */
+export function FundsByIdRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/funds/get", params);
+}
+
+/**
+ * 获取基金列表
+ * @param params {"Name":number, CategoryId, Risk:风险等级, PriceRange, DateRange: string[], PageNum, PageSize, OrderBy }
+ * @returns Promise<any>
+ */
+export function FundsListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/funds/list", params);
+}
+
+/**
+ * 获取商户
+ * @param params {"Id":number }
+ * @returns Promise<any>
+ */
+export function FirmByIdRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/firm/get", params);
+}
+
+/**
+ * 获取商户列表
+ * @param params {"FirmName", FirmId, Status, DateRange: string[], PageNum, PageSize, OrderBy }
+ * @returns Promise<any>
+ */
+export function FirmListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/firm/list", params);
+}
+
+/**
+ * 基金净值曲线图
+ * @param params {id}
+ * @returns
+ */
+export function FundsNetValuesRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/funds/netValues", params);
 }

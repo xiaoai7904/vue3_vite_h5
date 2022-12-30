@@ -1,17 +1,23 @@
-import { defineComponent, reactive } from "vue";
+import { defineComponent, onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { Field, Button, NavBar } from "vant";
 import { RouterNameEnum } from "@/common";
+import { useProduct } from "@/hook";
 import "./BalanceBao.style.less";
 
 export default defineComponent({
   setup() {
     const router = useRouter();
     const { t } = useI18n();
+    const { productStore, getMonetaryFundList } = useProduct();
     const store = reactive({
       amount: "",
     });
+    onMounted(() => {
+      getMonetaryFundList();
+    });
+
     return () => (
       <div class="balance-bao">
         <NavBar
@@ -56,26 +62,13 @@ export default defineComponent({
           <div class="balance-bao-content-card">
             <h1>收益标准</h1>
             <div class="card-list">
-              <div>
-                <p>七天收益</p>
-                <p>+0.08%</p>
-                <p>[定]7天</p>
-              </div>
-              <div>
-                <p>七天收益</p>
-                <p>+0.08%</p>
-                <p>[定]7天</p>
-              </div>
-              <div>
-                <p>七天收益</p>
-                <p>+0.08%</p>
-                <p>[定]7天</p>
-              </div>
-              <div>
-                <p>七天收益</p>
-                <p>+0.08%</p>
-                <p>[定]7天</p>
-              </div>
+              {productStore.productList.map((item) => (
+                <div>
+                  <p>{item.name}</p>
+                  <p>+{(item.ratio * 100).toFixed(2)}%</p>
+                  <p>[定]{item.day}天</p>
+                </div>
+              ))}
             </div>
           </div>
           <div class="balance-bao-content-btns">

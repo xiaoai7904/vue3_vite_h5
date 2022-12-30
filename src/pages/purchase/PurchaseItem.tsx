@@ -1,13 +1,13 @@
 import { defineComponent, PropType } from "vue";
 import { useRouter } from "vue-router";
 import { Image, Button } from "vant";
-import { RouterNameEnum, ProductItemType } from "@/common";
+import { RouterNameEnum, FundsItemType } from "@/common";
 import TestIcon from "@/assets/image/user_bg.png";
 export default defineComponent({
   props: {
     data: {
-      type: Object as PropType<ProductItemType>,
-      default: () => ({} as ProductItemType),
+      type: Object as PropType<FundsItemType>,
+      default: () => ({} as FundsItemType),
     },
   },
   setup(props) {
@@ -25,16 +25,16 @@ export default defineComponent({
         <div class="position-record-item-content flex-start">
           <Image src={TestIcon} />
           <div class="position-record-item-right">
-            <h1>基金名称：{props.data.goodsName}</h1>
+            <h1>基金名称：{props.data.name}</h1>
             <div class="flex-between">
               <p>
-                产品跌幅：<span class="value up">{props.data.rate}%</span>
+                产品跌幅：<span class="value up">{props.data.ratio}%</span>
               </p>
               {/* <Button type="danger">回购</Button> */}
             </div>
             <div class="flex-between">
               <p>
-                单位净值：<span class="value">{props.data.goodsPrice}</span>
+                单位净值：<span class="value">{props.data.price}</span>
               </p>
               {/* <Button type="danger">回购</Button> */}
             </div>

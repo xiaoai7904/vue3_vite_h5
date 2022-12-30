@@ -15,53 +15,18 @@ export default defineComponent({
     const { t } = useI18n();
     const router = useRouter();
     const { query } = useRoute();
-    const { productDetails, getProductDetails } = useProduct();
-    const store = reactive<Record<string, any>>({
-      // chartData: [
-      //   {
-      //     time: new Date().getTime(),
-      //     value: 12,
-      //   },
-      //   {
-      //     time: new Date().getTime() * Math.random(),
-      //     value: 100,
-      //   },
-      //   {
-      //     time: new Date().getTime() * Math.random(),
-      //     value: 28,
-      //   },
-      //   {
-      //     time: new Date().getTime() * Math.random(),
-      //     value: 200,
-      //   },
-      //   {
-      //     time: new Date().getTime() * Math.random(),
-      //     value: Math.random() * 2 + 10,
-      //   },
-      //   {
-      //     time: new Date().getTime() * Math.random(),
-      //     value: Math.random() * 2 + 10,
-      //   },
-      // ],
-    });
-    // const getRecord = () => {
-    //   return {
-    //     time: new Date().getTime(),
-    //     value: Math.random() * 2 + 10,
-    //   };
-    // };
+    const {
+      fundsNetValuesChart,
+      productDetails,
+      getFundDetails,
+      getFundsNetValues,
+    } = useProduct();
+    const store = reactive<Record<string, any>>({});
 
-    // onMounted(() => {
-    //   setInterval(() => {
-    //     const newData = [].concat(store.chartData) as any[];
-    //     store.chartData.push(getRecord());
-    //     console.log(store.chartData);
-    //     // store.chartData = [...newData];
-    //   }, 1000);
-    // });
     onMounted(async () => {
       if (query?.id) {
-        await getProductDetails(Number(query.id));
+        await getFundDetails(Number(query.id));
+        await getFundsNetValues(Number(query.id));
       }
     });
     return () => (
@@ -71,57 +36,40 @@ export default defineComponent({
           safe-area-inset-top
           left-arrow
           onClickLeft={() => router.back()}
-          title={productDetails.value.goodsName}
+          title={productDetails.value.name}
         />
         <div class="purchase-details-content">
           <div class="purchase-details-header flex-around">
             <div>
               <p>产品跌幅</p>
               <p class="value up">
-                <span>{productDetails.value.rate}</span>
+                <span>{productDetails.value.ratio}</span>
                 <span class="unit">%</span>
               </p>
             </div>
             <div>
               <p>单位净值</p>
-              <p class="value">{productDetails.value.goodsPrice}</p>
+              <p class="value">{productDetails.value.price}</p>
             </div>
             <div>
               <p>累计净值</p>
-              <p class="value">2.983</p>
+              <p class="value">{productDetails.value.realPrice}</p>
             </div>
           </div>
           <div class="purchase-details-tag flex-between">
             <div class="purchase-details-type">
-              <span>混合型</span>
-              <span>中风险R3</span>
+              <span>{productDetails.value.info}</span>
+              <span>{productDetails.value.risk}</span>
             </div>
-            <div class="purchase-details-rank">近一个月收益率同类排名1/24</div>
+            <div class="purchase-details-rank">
+              近一个月收益率同类排名{productDetails.value.rank}
+            </div>
           </div>
           <div class="line" />
           <div class="purchase-details-title">
-            <h1>{productDetails.value.goodsName}</h1>
+            <h1>{productDetails.value.name}</h1>
             <div class="purchase-details-chart">
-              <Chart />
-              {/* <Canvas pixelRatio={window.devicePixelRatio}>
-                <Chart
-                  data={store.chartData}
-                  scale={{
-                    value: {
-                      min: 0,
-                    },
-                  }}
-                >
-                  <Axis field="value" />
-                  <Axis
-                    field="time"
-                    type="timeCat"
-                    tickCount={5}
-                    mask="mm:ss"
-                  />
-                  <Line x="time" y="value" />
-                </Chart>
-              </Canvas> */}
+              <Chart data={fundsNetValuesChart.value} />
             </div>
           </div>
           <div class="line" />

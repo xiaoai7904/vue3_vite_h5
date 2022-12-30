@@ -76,14 +76,56 @@ export type ProductItemType = {
   updatedDate: string;
 };
 
+// 货币基金
+export type FundsMItemType = {
+  createdAt: string;
+  day: number;
+  deletedAt: string;
+  fee: number;
+  id: number;
+  maxNum: number;
+  minNum: number;
+  name: string;
+  ratio: number;
+  status: number;
+  updatedAt: string;
+};
+
+// 基金
+export type FundsItemType = {
+  cid: number;
+  createdAt: string;
+  deletedAt: string;
+  id: number;
+  info: string;
+  name: string;
+  pic: string;
+  price: number;
+  rank: string;
+  ratio: number;
+  realPrice: number;
+  risk: string;
+  status: number;
+  updatedAt: string;
+};
+
 // 产品hook store
 export type ProductStoreType = {
-  productList: ProductItemType[];
+  productList: FundsMItemType[];
   productPageNum: number;
   productPageSize: number;
   productTotal: number;
   productPages: number;
-  productDetails: ProductItemType;
+  productDetails: FundsMItemType;
+
+  fundsList: FundsItemType[];
+  fundsPageNum: number;
+  fundsPageSize: number;
+  fundsTotal: number;
+  fundsPages: number;
+  fundsDetails: FundsItemType;
+
+  fundsNetValuesChart: Record<string, number>[];
 };
 
 export type MyCommissionStoreType = {
@@ -144,4 +186,40 @@ export type PayStoreType = {
   withdrawPwd: string;
   // 提现loading
   withdrawLoading: boolean;
+};
+
+export type PositionItemType = {
+  id: string;
+  // 会员ID
+  uid: number;
+  // 交易金额
+  num: number;
+  // 交易完成时间
+  completeTime: number;
+  // 订单结束时间
+  endTime: number;
+  // 订单状态 0待付款 1交易完成 2用户取消 3强制完成 4强制取消 5交易冻结 6.等待取出 7.订单结束
+  status: number;
+  // 佣金
+  commission: number;
+  // 代理佣金
+  agentCommission: number;
+  // 下级佣金
+  sonCommission: number;
+  // 佣金发放状态 0未发放 1已发放 2账号冻结
+  cStatus: number;
+  // 预计收益
+  preIncome: number;
+  // 商品ID
+  fundId: number;
+  // 商品数量
+  fundCount: number;
+  // 商品分类
+  cid: number;
+  // 创建日期
+  createdAt: number;
+  // 更新日期
+  updatedAt: number;
+  // 删除日期
+  deletedAt: number;
 };
