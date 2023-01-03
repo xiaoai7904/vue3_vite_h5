@@ -36,6 +36,7 @@ export function useUser() {
     try {
       if (!isLogin.value) return;
       const { data } = await AccountDetailRequest();
+      console.log(data)
       //   userStore.userInfo = data;
     } catch (error) {}
   };

@@ -1,8 +1,8 @@
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { Button } from "vant";
 import { RouterNameEnum, UserInfoType, XA_USERINFO } from "@/common";
-import { useLogin, useLocalStorage } from "@/hook";
+import { useLogin, useLocalStorage, useUser } from "@/hook";
 import defaultUserIcon from "@/assets/image/head.png";
 import useIcon from "@/assets/image/7.png";
 import positionIcon from "@/assets/image/3.png";
@@ -21,9 +21,11 @@ export default defineComponent({
     const router = useRouter();
     const { loginStore, logout } = useLogin();
     const { localStore } = useLocalStorage();
-
+    const { getUserInfo } = useUser();
     const userInfo = (localStore.get(XA_USERINFO) || {}) as UserInfoType;
-
+    onMounted(() => {
+      getUserInfo();
+    });
     return () => (
       <div class="my">
         <div class="my-account">
@@ -165,7 +167,12 @@ export default defineComponent({
         </div>
 
         <div class="my-logout">
-          <Button type="primary" block loading={loginStore.loading} onClick={logout}>
+          <Button
+            type="primary"
+            block
+            loading={loginStore.loading}
+            onClick={logout}
+          >
             退出登录
           </Button>
         </div>

@@ -108,7 +108,7 @@ export function useProduct() {
   };
 
   // 购买基金
-  const buyFund = async (count: number, fundId: string) => {
+  const buyFund = async (count: number, fundId: string | number) => {
     try {
       await BuyRequest({ number: count, fundId });
     } catch (error) {}
@@ -122,7 +122,7 @@ export function useProduct() {
   };
 
   // 转入货币基金
-  const buyMonetaryFund = async (count: number, fundId: string) => {
+  const buyMonetaryFund = async (count: number, fundId: string | number) => {
     try {
       await BuyMRequest({ number: count, fundId });
     } catch (error) {}

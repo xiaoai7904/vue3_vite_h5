@@ -38,7 +38,7 @@ type ChartStoreType = {
 export default defineComponent({
   props: {
     data: {
-      type: Object as PropType<Record<string, number>[]>,
+      type: Array as PropType<Record<string, number>[]>,
       default: () => [],
     },
   },
@@ -53,16 +53,38 @@ export default defineComponent({
         },
         xAxis: {
           type: "category",
-          data: props.data ? props.data.map(item => item.date) : [],
+          data: props.data ? props.data.map((item) => item.date) : [],
         },
         yAxis: {
           type: "value",
-          min: "dataMin",
-          minInterval: 0.5
+          min: function (value) {
+            if (value.min < 0.5) {
+              return 0.5;
+            }
+
+            const num = Math.floor(value.min);
+            
+            if(num <= 0) {
+              return 1;
+            }
+
+            const diff = num + 0.5;
+
+            if (value.min > diff) {
+              return Math.ceil(value.min);
+            }
+
+            if (value.min < diff) {
+              return Math.floor(value.min);
+            }
+
+            return diff;
+          },
+          minInterval: 0.5,
         },
         series: [
           {
-            data: props.data ? props.data.map(item => item.value) : [],
+            data: props.data ? props.data.map((item) => item.value) : [],
             areaStyle: {
               color: {
                 type: "linear",
@@ -134,8 +156,12 @@ export default defineComponent({
     watch(
       () => props.data,
       (newVlaue) => {
-        (chartStore.options.xAxis as any).data = Object.keys(newVlaue);
-        (chartStore.options.series as any)[0].data = Object.values(newVlaue);
+        (chartStore.options.xAxis as any).data = newVlaue.map(
+          (item) => item.date
+        );
+        (chartStore.options.series as any)[0].data = newVlaue.map(
+          (item) => item.value
+        );
         setOption(chartStore.options);
       },
       { deep: true }
@@ -143,7 +169,7 @@ export default defineComponent({
     onMounted(() => {
       const chartDom = document.getElementById("chart")!;
       rawData.chartIns = echarts.init(chartDom);
-      // setOption(chartStore.options);
+      setOption(chartStore.options);
       // scheduledUpdate();
     });
 

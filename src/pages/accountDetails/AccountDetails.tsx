@@ -10,7 +10,6 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     const router = useRouter();
-    const { getUserInfo } = useUser();
     const pageListRef = ref<PageListRefType | null>(null);
     const store = reactive({
       tabActive: 0,

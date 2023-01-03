@@ -20,6 +20,7 @@ export default defineComponent({
       productDetails,
       getFundDetails,
       getFundsNetValues,
+      buyFund,
     } = useProduct();
     const store = reactive<Record<string, any>>({});
 
@@ -29,6 +30,7 @@ export default defineComponent({
         await getFundsNetValues(Number(query.id));
       }
     });
+
     return () => (
       <div class="purchase-details">
         <NavBar
@@ -98,7 +100,12 @@ export default defineComponent({
             onClick={() => router.push({ name: RouterNameEnum.POSITIONRECORD })}
           />
           <ActionBarIcon icon="chat-o" text="在线客服" />
-          <ActionBarButton type="danger">一键申购</ActionBarButton>
+          <ActionBarButton
+            type="danger"
+            onClick={() => buyFund(1, productDetails.value.id)}
+          >
+            一键申购
+          </ActionBarButton>
         </ActionBar>
       </div>
     );
