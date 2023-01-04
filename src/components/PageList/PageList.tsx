@@ -1,5 +1,5 @@
 import { defineComponent, reactive, computed, PropType } from "vue";
-import { List, PullRefresh, Loading } from "vant";
+import { List, PullRefresh, Loading, Empty } from "vant";
 import { useI18n } from "vue-i18n";
 import "./PageList.style.less";
 
@@ -33,7 +33,7 @@ export default defineComponent({
       httpLoading: true,
       finished: false,
     });
-    const isEmpty = computed(() => !props.list.length);
+    const isEmpty = computed(() => !props.list || !props.list.length);
 
     const pageParams: RequestParamsType = { size: 10, current: props.current };
 
@@ -85,7 +85,6 @@ export default defineComponent({
         pullingText={t("common.pullRefresh" /* 松开刷新... */)}
         loadingText={t("common.loading" /* 加载中 */)}
       >
-        {state.httpLoading}
         <div style={props.contentStyle}>
           {!isEmpty.value && (
             <List
@@ -100,7 +99,9 @@ export default defineComponent({
               {slots.default?.(props.list)}
             </List>
           )}
-          {/* {isEmpty.value && !state.httpLoading && <Empty type={props.empty} top={100} />} */}
+          {isEmpty.value && !state.httpLoading && (
+            <Empty description={t("common.empty" /* 暂无数据 */)} />
+          )}
           {isEmpty.value && state.httpLoading && (
             <div class="page-list-loading">
               <Loading />

@@ -15,6 +15,8 @@ export type LoginFormType = {
   password: string;
 };
 
+export type ObjType<T> = Record<string, T>;
+
 export type LoginStoreType = {
   loading: boolean;
   form: LoginFormType;
@@ -161,6 +163,62 @@ export type RechargeInfoType = {
   holder: string;
 };
 
+// 提现列表
+export type WhithdrawListItemType = {
+  id: string;
+  // 提现用户id
+  uid: number;
+  //银行卡信息
+  bkId: number;
+  // 提现金额
+  num: number;
+  //审核时间
+  endtime: string;
+  //订单状态 1待处理 2审核通过 3审核不通过
+  status: number;
+  type: string;
+  realNum: number;
+  shouxu: string;
+  // 创建时间
+  createdDate: string;
+  // 更新时间
+  updatedDate: string;
+  // 删除时间
+  deletedDate: string;
+};
+
+// 充值列表
+export type RechargeListItemType = {
+  id: string;
+  // 用户id
+  uid: number;
+  // 充值姓名
+  realName: string;
+  // 手机
+  tel: string;
+  // 充值金额
+  num: number;
+  // 支付方式 1微信 2支付宝 3qq
+  type: number;
+  // 打款凭证
+  pic: string;
+  // 处理时间
+  endtime: string;
+  // 订单状态 1下单成功 2充值成功 3充值失败 4.转账待审核
+  status: number;
+  // 支付名称
+  payName: string;
+  isVip: number;
+  level: number;
+  payType: number;
+  // 创建时间
+  createdDate: string;
+  // 更新时间
+  updatedDate: string;
+  // 删除时间
+  deletedDate: string;
+};
+
 export type PayStoreType = {
   // 充值类型(1: 银行卡)
   recahrgeType: number;
@@ -186,6 +244,11 @@ export type PayStoreType = {
   withdrawPwd: string;
   // 提现loading
   withdrawLoading: boolean;
+  // 充值列表
+  rechargeList: RechargeListItemType[];
+  // 提现列表
+  withdrawList: WhithdrawListItemType[];
+  [key: string]: any;
 };
 
 export type PositionItemType = {

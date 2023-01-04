@@ -5,6 +5,7 @@ export const zhCn = {
     loading: "加载中",
     pageListEnd: "已加载全部内容",
     loadingText: "正在加载中...",
+    empty: "暂无数据",
   },
   login: {
     title: "华夏基金",

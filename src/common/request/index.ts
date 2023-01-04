@@ -242,3 +242,21 @@ export function FirmListRequest<T, R>(params = {} as T) {
 export function FundsNetValuesRequest<T, R>(params = {} as T) {
   return Http.of().get<T, R>("/api/v1/funds/netValues", params);
 }
+
+/**
+ * 充值列表
+ * @param params {type: 支付方式 1微信 2支付宝 3qq, status: 订单状态 1下单成功 2充值成功 3充值失败 4.转账待审核, PayName, PayType, DateRange, PageNum, PageSize, OrderBy}
+ * @returns
+ */
+export function RechargeListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/recharges", params);
+}
+
+/**
+ * 充值列表
+ * @param params {bkId: 银行卡信息, status: 订单状态 1待处理 2审核通过 3审核不通过, type, DateRange, PageNum, PageSize, OrderBy}
+ * @returns
+ */
+export function WithdrawListRequest<T, R>(params = {} as T) {
+  return Http.of().get<T, R>("/api/v1/withdraw/list", params);
+}

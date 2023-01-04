@@ -1,8 +1,10 @@
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { NavBar, Button, Tabs, Tab } from "vant";
+import { NavBar, Button } from "vant";
 import { PageList, PageListRefType } from "@/components/PageList";
+import { usePay } from "@/hook";
+import { RechargeListItemType } from "@/common";
 import "./Recharge.style.less";
 
 export default defineComponent({
@@ -10,15 +12,9 @@ export default defineComponent({
     const { t } = useI18n();
     const router = useRouter();
     const pageListRef = ref<PageListRefType | null>(null);
-    const store = reactive({
-      tabActive: 0,
-      amount: "",
-      list: [1, 2, 3, 4, 5],
-      total: 5,
-      pages: 20,
-      current: 1,
-    });
-    const getListApi = () => {};
+
+    const { payStore, rechargeStatus, getRechargeList } = usePay();
+
     return () => (
       <div class="recharge-record">
         <NavBar
@@ -29,84 +25,46 @@ export default defineComponent({
           onClickLeft={() => router.back()}
         />
         <div class="recharge-record-content">
-          <Tabs v-model:active={store.tabActive}>
-            <Tab title="线上充值">
-              <PageList
-                ref={pageListRef}
-                isInit
-                requestApi={getListApi}
-                list={store.list}
-                total={store.total}
-                pages={store.pages}
-                v-model:current={store.current}
-                v-slots={{
-                  default: (list: any[]) => (
-                    <>
-                      {list.map((item, index) => (
-                        <div class="recharge-record-content-item">
-                          <div class="header">
-                            <span>充值金额(¥): </span>
-                            <span>200</span>
+          <PageList
+            ref={pageListRef}
+            isInit
+            requestApi={getRechargeList}
+            list={payStore.rechargeList}
+            total={payStore.rechargeTotal}
+            pages={payStore.rechargePages}
+            v-model:current={payStore.rechargePageNum}
+            v-slots={{
+              default: (list: RechargeListItemType[]) => (
+                <>
+                  {list && list.map((item, index) => (
+                    <div class="recharge-record-content-item">
+                      <div class="header">
+                        <span>充值金额(¥): </span>
+                        <span>{item.num}</span>
+                      </div>
+                      <div class="flex-between">
+                        <div>
+                          <div class="item">
+                            <span>订单号:</span>
+                            <span>{item.id}</span>
                           </div>
-                          <div class="flex-between">
-                            <div>
-                              <div class="item">
-                                <span>订单号:</span>
-                                <span>SY2212092356288533</span>
-                              </div>
-                              <div class="item">
-                                <span>充值状态:</span>
-                                <span class="red">待审核</span>
-                              </div>
-                            </div>
-                            <Button type="primary">撤销订单</Button>
+                          <div class="item">
+                            <span>充值状态:</span>
+                            <span class="red">
+                              {rechargeStatus[item.status]}
+                            </span>
                           </div>
                         </div>
-                      ))}
-                    </>
-                  ),
-                }}
-              />
-            </Tab>
-            <Tab title="线下充值">
-              <PageList
-                ref={pageListRef}
-                isInit
-                requestApi={getListApi}
-                list={store.list}
-                total={store.total}
-                pages={store.pages}
-                v-model:current={store.current}
-                v-slots={{
-                  default: (list: any[]) => (
-                    <>
-                      {list.map((item, index) => (
-                        <div class="recharge-record-content-item">
-                          <div class="header">
-                            <span>充值金额(¥): </span>
-                            <span>200</span>
-                          </div>
-                          <div class="flex-between">
-                            <div>
-                              <div class="item">
-                                <span>订单号:</span>
-                                <span>SY2212092356288533</span>
-                              </div>
-                              <div class="item">
-                                <span>充值状态:</span>
-                                <span class="red">待审核</span>
-                              </div>
-                            </div>
-                            <Button type="primary">撤销订单</Button>
-                          </div>
-                        </div>
-                      ))}
-                    </>
-                  ),
-                }}
-              />
-            </Tab>
-          </Tabs>
+                        {[1, 4].includes(item.status) && (
+                          <Button type="primary">撤销订单</Button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ),
+            }}
+          />
         </div>
       </div>
     );

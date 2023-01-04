@@ -8,9 +8,15 @@ import {
   WithdrawRequest,
   PositionRequest,
   CreateRechargeOrderRequest,
+  RechargeListRequest,
+  WithdrawListRequest,
   PayStoreType,
   RechargeCreateResType,
+  RechargeListItemType,
+  WhithdrawListItemType,
+  ObjType,
   RouterNameEnum,
+  ListType,
 } from "@/common";
 
 const payStore = reactive<PayStoreType>({
@@ -34,7 +40,33 @@ const payStore = reactive<PayStoreType>({
   whithdrawBank: "",
   withdrawPwd: "",
   withdrawLoading: false,
+
+  rechargeList: [],
+  withdrawList: [],
+
+  rechargePageNum: 1,
+  rechargePageSize: 10,
+  rechargeTotal: 0,
+  rechargePages: 0,
+
+  withdrawPageNum: 1,
+  withdrawPageSize: 10,
+  withdrawTotal: 0,
+  withdrawPages: 0,
 });
+
+const rechargeStatus: ObjType<string> = {
+  1: "下单成功",
+  2: "成功",
+  3: "失败",
+  4: "待审核",
+};
+
+const withdrawStatus: ObjType<string> = {
+  1: "待处理",
+  2: "审核通过",
+  3: "审核不通过",
+};
 
 /**
  * 充值提现持仓购买相关
@@ -73,7 +105,7 @@ export function usePay() {
         orderId: payStore.recahrgeOrderId,
         pic: payStore.recahrgePic,
       });
-      showSuccessToast("充值成功")
+      showSuccessToast("充值成功");
       router.replace({ name: RouterNameEnum.MY });
     } catch (error) {}
   };
@@ -106,14 +138,56 @@ export function usePay() {
     } catch (error) {}
   };
 
+  // 充值列表
+  const getRechargeList = async () => {
+    try {
+      const { data } = await RechargeListRequest<
+        ObjType<any>,
+        ListType<RechargeListItemType>
+      >({
+        pageNum: payStore.rechargePageNum,
+        pageSize: payStore.rechargePageSize,
+      });
+      payStore.rechargePageNum = data.currentPage;
+      payStore.rechargeTotal = data.total;
+      payStore.rechargePages = Math.ceil(
+        data.total / payStore.rechargePageSize
+      );
+      payStore.rechargeList = data.list;
+    } catch (error) {}
+  };
+
+  // 提现列表
+  const getWithdrawList = async () => {
+    try {
+      const { data } = await WithdrawListRequest<
+        ObjType<any>,
+        ListType<WhithdrawListItemType>
+      >({
+        pageNum: payStore.withdrawPageNum,
+        pageSize: payStore.withdrawPageSize,
+      });
+      payStore.withdrawPageNum = data.currentPage;
+      payStore.withdrawTotal = data.total;
+      payStore.withdrawPages = Math.ceil(
+        data.total / payStore.withdrawPageSize
+      );
+      payStore.withdrawList = data.list;
+    } catch (error) {}
+  };
+
   const checkField = () => {};
   return {
     payStore,
+    rechargeStatus,
+    withdrawStatus,
     createRechargeOrder,
     recahrge,
     withdraw,
     sell,
     postion,
     checkField,
+    getRechargeList,
+    getWithdrawList,
   };
 }

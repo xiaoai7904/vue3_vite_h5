@@ -1,8 +1,10 @@
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { NavBar } from "vant";
 import { PageList, PageListRefType } from "@/components/PageList";
+import { usePay } from "@/hook";
+import { WhithdrawListItemType } from "@/common";
 import "./Withdraw.style.less";
 
 export default defineComponent({
@@ -10,14 +12,7 @@ export default defineComponent({
     const { t } = useI18n();
     const router = useRouter();
     const pageListRef = ref<PageListRefType | null>(null);
-    const store = reactive({
-      amount: "",
-      list: [1, 2, 3, 4, 5],
-      total: 5,
-      pages: 20,
-      current: 1,
-    });
-    const getListApi = () => {};
+    const { payStore, withdrawStatus, getWithdrawList } = usePay();
     return () => (
       <div class="withdraw-record">
         <NavBar
@@ -31,29 +26,31 @@ export default defineComponent({
           <PageList
             ref={pageListRef}
             isInit
-            requestApi={getListApi}
-            list={store.list}
-            total={store.total}
-            pages={store.pages}
-            v-model:current={store.current}
+            requestApi={getWithdrawList}
+            list={payStore.withdrawList}
+            total={payStore.withdrawTotal}
+            pages={payStore.withdrawPages}
+            v-model:current={payStore.withdrawPageNum}
             v-slots={{
-              default: (list: any[]) => (
+              default: (list: WhithdrawListItemType[]) => (
                 <>
-                  {list.map((item, index) => (
-                    <div class="withdraw-record-content-item">
+                  {list && list.map((item) => (
+                    <div key={item.id} class="withdraw-record-content-item">
                       <div class="header">
                         <span>提现金额(¥): </span>
-                        <span>200</span>
+                        <span>{item.num}</span>
                       </div>
                       <div class="flex-between">
                         <div>
                           <div class="item">
                             <span>订单号:</span>
-                            <span>SY2212092356288533</span>
+                            <span>{item.id}</span>
                           </div>
                           <div class="item">
                             <span>提现状态:</span>
-                            <span class="red">待审核</span>
+                            <span class="red">
+                              {withdrawStatus[item.status]}
+                            </span>
                           </div>
                         </div>
                       </div>
